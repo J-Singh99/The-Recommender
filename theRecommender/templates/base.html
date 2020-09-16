@@ -1,25 +1,349 @@
-{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>The Recommender</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+    <link rel="stylesheet" href="{% static 'css/notifications.css' %}">
+
+
     {% block link %} {% endblock link %}
 
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" class='smooth-scroll scrollbar scrollbar-black bordered-black square thin'>
-    
-    {% block content %} {% endblock content %}
+    <div class="wrapper d-flex align-items-stretch">
+      <nav id="sidebar">
+        <div class="p-4">
+          <a href="#" class="img logo rounded-circle mb-4" style="background-image: url({% static 'images/logo.jpg' %});"></a>
+          <ul class="list-unstyled components mb-5">
+            <li class="header-menu">
+              <span>General</span>
+            </li>
+            <li class="active">
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <a href="#">Profile</a>
+            </li>
+            <li class="header-menu">
+              <span>WorkSpace</span>
+            </li>
+            <li>
+              <a href="#">Chat</a>
+            </li>
+            <li>
+              <a href="#">Assignments</a>
+            </li>
+            <li>
+              <a href="#">To Do List</a>
+            </li>
+            <li>
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">More</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                  <a href="#">Notifications</a>
+                </li>
+                <li>
+                  <a href="#">More 2</a>
+                </li>
+                <li>
+                  <a href="#">More 3</a>
+                </li>
+              </ul>
+            </li>
+            <li class="header-menu">
+              <span>Entertainment</span>
+            </li>
+            <li>
+              <a href="#">Songs</a>
+            </li>
+            <li>
+              <a href="#">Videos</a>
+            </li>
+            <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">More</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                  <a href="#">More 1</a>
+                </li>
+                <li>
+                  <a href="#">More 2</a>
+                </li>
+                <li>
+                  <a href="#">More 3</a>
+                </li>
+              </ul>
+            </li>
+            <li class="header-menu">
+              <span>More</span>
+            </li>
+            <li>
+              <a href="#">Contact Us</a>
+            </li>
+            <li>
+              <a href="#">About Us</a>
+            </li>
+          </ul>
+          <div class="footer">
+            <p>
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+            </p>
+          </div>
+        </div>
+      </nav>
+      <div id="content" class="p-4 p-md-5">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Toggle Menu</span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">SignUp</a>
+                </li>
 
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-bell"></i>
+                  </a>
+                    <ul class="dropdown-menu">
+                      <li class="head text-light bg-dark">
+                        <div class="row">
+                          <div class="col-lg-12 col-sm-12 col-12">
+                            <span>Notifications (3)</span>
+                            <a href="" class="float-right text-light">Mark all as read</a>
+                          </div>
+                      </li>
+                      <li class="notification-box">
+                        <div class="row">
+                          <div class="col-lg-3 col-sm-3 col-3 text-center">
+                            <img src="{% static 'images/logo.jpg' %}" class="w-50 rounded-circle">
+                          </div>    
+                          <div class="col-lg-8 col-sm-8 col-8">
+                            <strong class="text-info">David John</strong>
+                            <div>
+                              Lorem ipsum dolor sit amet, consectetur
+                            </div>
+                            <small class="text-warning">27.11.2015, 15:00</small>
+                          </div>    
+                        </div>
+                      </li>
+                      <li class="notification-box bg-gray">
+                        <div class="row">
+                          <div class="col-lg-3 col-sm-3 col-3 text-center">
+                            <img src="{% static 'images/logo.jpg' %}" class="w-50 rounded-circle">
+                          </div>    
+                          <div class="col-lg-8 col-sm-8 col-8">
+                            <strong class="text-info">David John</strong>
+                            <div>
+                              Lorem ipsum dolor sit amet, consectetur
+                            </div>
+                            <small class="text-warning">27.11.2015, 15:00</small>
+                          </div>    
+                        </div>
+                      </li>
+                      <li class="notification-box">
+                        <div class="row">
+                          <div class="col-lg-3 col-sm-3 col-3 text-center">
+                            <img src="{% static 'images/logo.jpg' %}" class="w-50 rounded-circle">
+                          </div>    
+                          <div class="col-lg-8 col-sm-8 col-8">
+                            <strong class="text-info">David John</strong>
+                            <div>
+                              Lorem ipsum dolor sit amet, consectetur
+                            </div>
+                            <small class="text-warning">27.11.2015, 15:00</small>
+                          </div>    
+                        </div>
+                      </li>
+                      <li class="footer bg-dark text-center">
+                        <a href="" class="text-light">View All</a>
+                      </li>
+                    </ul>
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+
+        {% block content %} {% endblock content %}
+
+       </div>
+    
+    </div>
+    <!--chat bot-->
+      <div class="container">
+        <div class="row"> 
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="chatbox chatbox22 chatbox--tray ">
+              <div class="chatbox__title">
+                <h5><a href="javascript:void()">How are you?? </a></h5>
+                <!--<button class="chatbox__title__tray">
+                  <span></span>
+                  </button>-->
+                <button class="chatbox__title__close">
+                  <span>
+                    <svg viewBox="0 0 12 12" width="12px" height="12px">
+                      <line stroke="#FFFFFF" x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
+                      <line stroke="#FFFFFF" x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div class="chatbox__body">
+                <div class="chatbox__body__message chatbox__body__message--left">
+                  <div class="chatbox_timing">
+                    <ul>
+                      <li><a href="#"><i class="fa fa-calendar"></i> 22/11/2018</a></li>
+                      <li><a href="#"><i class="fa fa-clock-o"></i> 7:00 PM</a></a></li>
+                    </ul>
+                  </div>
+                  <img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Picture">
+                  <div class="clearfix"></div>
+                  <div class="ul_section_full">
+                    <ul class="ul_msg">
+                      <li><strong>Person Name</strong></li>
+                      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <ul class="ul_msg2">
+                      <li><a href="#"><i class="fa fa-pencil"></i> </a></li>
+                      <li><a href="#"><i class="fa fa-trash chat-trash"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="chatbox__body__message chatbox__body__message--right">
+                  <div class="chatbox_timing">
+                    <ul>
+                      <li><a href="#"><i class="fa fa-calendar"></i> 22/11/2018</a></li>
+                      <li><a href="#"><i class="fa fa-clock-o"></i> 7:00 PM</a></a></li>
+                    </ul>
+                  </div>
+                  <img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Picture">
+                  <div class="clearfix"></div>
+                  <div class="ul_section_full">
+                    <ul class="ul_msg">
+                      <li><strong>Person Name</strong></li>
+                      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <ul class="ul_msg2">
+                      <li><a href="#"><i class="fa fa-pencil"></i> </a></li>
+                      <li><a href="#"><i class="fa fa-trash chat-trash"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="chatbox__body__message chatbox__body__message--left">
+                  <div class="chatbox_timing">
+                    <ul>
+                      <li><a href="#"><i class="fa fa-calendar"></i> 22/11/2018</a></li>
+                      <li><a href="#"><i class="fa fa-clock-o"></i> 7:00 PM</a></a></li>
+                    </ul>
+                  </div>
+                  <img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Picture">
+                  <div class="clearfix"></div>
+                  <div class="ul_section_full">
+                    <ul class="ul_msg">
+                      <li><strong>Person Name</strong></li>
+                      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <ul class="ul_msg2">
+                      <li><a href="#"><i class="fa fa-pencil"></i> </a></li>
+                      <li><a href="#"><i class="fa fa-trash chat-trash"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="chatbox__body__message chatbox__body__message--right">
+                  <div class="chatbox_timing">
+                    <ul>
+                      <li><a href="#"><i class="fa fa-calendar"></i> 22/11/2018</a></li>
+                      <li><a href="#"><i class="fa fa-clock-o"></i> 7:00 PM</a></a></li>
+                    </ul>
+                  </div>
+                  <img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Picture">
+                  <div class="clearfix"></div>
+                  <div class="ul_section_full">
+                    <ul class="ul_msg">
+                      <li><strong>Person Name</strong></li>
+                      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <ul class="ul_msg2">
+                      <li><a href="#"><i class="fa fa-pencil"></i> </a></li>
+                      <li><a href="#"><i class="fa fa-trash chat-trash"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="chatbox__body__message chatbox__body__message--left">
+                  <div class="chatbox_timing">
+                    <ul>
+                      <li><a href="#"><i class="fa fa-calendar"></i> 22/11/2018</a></li>
+                      <li><a href="#"><i class="fa fa-clock-o"></i> 7:00 PM</a></a></li>
+                    </ul>
+                  </div>
+                  <img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Picture">
+                  <div class="clearfix"></div>
+                  <div class="ul_section_full">
+                    <ul class="ul_msg">
+                      <li><strong>Person Name</strong></li>
+                      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <ul class="ul_msg2">
+                      <li><a href="#"><i class="fa fa-pencil"></i> </a></li>
+                      <li><a href="#"><i class="fa fa-trash chat-trash"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <div class="input-group">
+                  <input id="btn-input" type="text" class="form-control input-sm chat_set_height" placeholder="Type your message here..." tabindex="0" dir="ltr" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" contenteditable="true" />
+                  <span class="input-group-btn">
+                  <button class="btn bt_bg btn-sm" id="btn-chat">
+                  Send</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--chat bot end-->
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/chatbot.js' %}"></script>
+
 
 {% block script %} {% endblock script %}
 
