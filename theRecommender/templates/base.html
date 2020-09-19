@@ -26,8 +26,8 @@
             <li class="header-menu">
               <span>General</span>
             </li>
-            <li class="active">
-              <a href="#">Home</a>
+            <li {% ifequal page "index" %} class = "active" {% endifequal %}>
+              <a href="{% url 'index' %}">Home</a>
             </li>
             <li>
               <a href="#">Profile</a>
@@ -35,8 +35,8 @@
             <li class="header-menu">
               <span>WorkSpace</span>
             </li>
-            <li>
-              <a href="#">Chat</a>
+            <li {% ifequal page "chat" %} class = "active" {% endifequal %}>
+              <a href="{% url 'chat' %}">Chat</a>
             </li>
             <li>
               <a href="#">Assignments</a>
