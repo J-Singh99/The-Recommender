@@ -165,7 +165,7 @@
           background-color: #fff;
           overflow-y: auto;
           border: 1px solid #f7f7f7;
-           height: calc(100% - 120px); 
+          height: calc(100% - 120px); 
         }
 
         .sideBar-body {
@@ -296,7 +296,7 @@
           background-color: #fff;
           overflow-y: auto;
           border: 1px solid #f7f7f7;
-          height: calc(100% - 160px);
+          /*height: calc(100% - 160px);*/
         }
 
         /*Conversation*/
