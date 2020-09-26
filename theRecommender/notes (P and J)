@@ -1,0 +1,26 @@
+Models for ##EVENTS. 
+ 
+ 
+----> Index Page
+----> Notifications
+ 
+##Tags:
+-> Tag_ID
+-> Tag_Club[3] (def = DEF)
+-> Tag_College[3] (def = 000)
+  
+##Post: (steal from Corey)
+  
+##Events :
+-> Event_ID
+-> Event_Creater (username)
+-> Event_Name
+-> Event_Description
+-> Event_Date
+-> Event_Time
+-> Event_Venue
+-> Event_Admins_List (username_list)
+-> Event_Tag_Club
+-> Event_Tag_College
+-> Posts_List
+-> Registered_List (username_list)
