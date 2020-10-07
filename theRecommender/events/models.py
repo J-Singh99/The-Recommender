@@ -25,8 +25,8 @@ class events(models.Model):
     time = models.TimeField(auto_now=False, auto_now_add=False)
     venue = models.CharField(max_length=100, unique=True) 
     #event_tags = models.ForeignKey(Tag, on_delete= models.CASCADE)
-    club_tag = models.CharField(max_length=3, unique=True,default="DEF")
-    uni = models.ForeignKey(User, verbose_name='university', on_delete= models.CASCADE)
+    #club_tag = models.CharField(max_length=3, unique=True,default="DEF")
+    #uni = models.ForeignKey(User, verbose_name='university', on_delete= models.CASCADE)
     
 class AdminOf(models.Model):
     event      = models.ForeignKey(events, verbose_name='event', on_delete= models.CASCADE)
