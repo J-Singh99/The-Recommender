@@ -18,7 +18,6 @@
             <div class="col-md-2 col-2 heading-compose  float-right"> <i class="fa fa-comments fa-2x  float-right" aria-hidden="true"></i>
             </div>
             <a class="col-md-1 col-1  heading-dot  float-right" href = '{% url "creategrp"  %}'> <i class="fa fa-users fa-2x  float-right" aria-hidden="true"></i>
-            
             </a>
           </div>
           <div class="row searchBox">
@@ -31,14 +30,14 @@
           </div>
           <div class="row sideBar">
             {% for i in userlist %}
-              {% ifnotequal user.username i.sender.username %} 
-                {% with sender=i.sender %}
-                  <a class="row sideBar-body col-12" href = "{% url 'personal_chat' pk=sender.pk %}">
-                {% endwith %}  
-              {% else %} 
-                {% with sender=i.receiver %}
-                  <a class="row sideBar-body col-12" href = "{% url 'personal_chat' pk=sender.pk %}">
-                {% endwith %}
+            {% ifnotequal user.username i.sender.username %} 
+            {% with sender=i.sender %}
+            <a class="row sideBar-body col-12" href = "{% url 'personal_chat' pk=sender.pk %}">
+            {% endwith %}  
+            {% else %} 
+            {% with sender=i.receiver %}
+            <a class="row sideBar-body col-12" href = "{% url 'personal_chat' pk=sender.pk %}">
+              {% endwith %}
               {% endifnotequal %}              
               <div class="col-md-3 col-3 sideBar-avatar">
                 <div class="avatar-icon">
@@ -56,8 +55,8 @@
                 </div>
               </div>
             </a>
-          {% endfor %}
-          {% for i in grouplist %}
+            {% endfor %}
+            {% for i in grouplist %}
             <a class="row sideBar-body col-12"  href = "{% url 'grp_chat' pk=i.pk %}">
               <div class="col-md-3 col-3 sideBar-avatar">
                 <div class="avatar-icon">
@@ -75,162 +74,162 @@
                 </div>
               </div>
             </a>
-          {% endfor %}
-          <!--
-            <a class="row sideBar-body col-12" href = "{% url 'personal_chat' pk='2' %}">
-              <div class="col-md-3 col-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
-                </div>
-              </div>
-              <div class="col-md-9 col-9 sideBar-main">
-                <div class="row">
-                  <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">Personal Chat
-                    </span>
-                  </div>
-                  <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                    </span>
+            {% endfor %}
+            <!--
+              <a class="row sideBar-body col-12" href = "{% url 'personal_chat' pk='2' %}">
+                <div class="col-md-3 col-3 sideBar-avatar">
+                  <div class="avatar-icon">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
                   </div>
                 </div>
-              </div>
-            </a>
-            <a class="row sideBar-body col-12" href = "{% url 'grp_chat' pk='3' %}">
-              <div class="col-md-3 col-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
-                </div>
-              </div>
-              <div class="col-md-9 col-9 sideBar-main">
-                <div class="row">
-                  <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">Group Chat
-                    </span>
-                  </div>
-                  <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                    </span>
+                <div class="col-md-9 col-9 sideBar-main">
+                  <div class="row">
+                    <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">Personal Chat
+                      </span>
+                    </div>
+                    <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </a>
-            <div class="row sideBar-body col-12">
-              <div class="col-md-3 col-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
-                </div>
-              </div>
-              <div class="col-md-9 col-9 sideBar-main">
-                <div class="row">
-                  <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
-                    </span>
-                  </div>
-                  <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                    </span>
+              </a>
+              <a class="row sideBar-body col-12" href = "{% url 'grp_chat' pk='3' %}">
+                <div class="col-md-3 col-3 sideBar-avatar">
+                  <div class="avatar-icon">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row sideBar-body col-12">
-              <div class="col-md-3 col-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
-                </div>
-              </div>
-              <div class="col-md-9 col-9 sideBar-main">
-                <div class="row">
-                  <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
-                    </span>
+                <div class="col-md-9 col-9 sideBar-main">
+                  <div class="row">
+                    <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">Group Chat
+                      </span>
+                    </div>
+                    <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                      </span>
+                    </div>
                   </div>
-                  <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                    </span>
+                </div>
+              </a>
+              <div class="row sideBar-body col-12">
+                <div class="col-md-3 col-3 sideBar-avatar">
+                  <div class="avatar-icon">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
+                  </div>
+                </div>
+                <div class="col-md-9 col-9 sideBar-main">
+                  <div class="row">
+                    <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
+                      </span>
+                    </div>
+                    <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row sideBar-body col-12">
-              <div class="col-md-3 col-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                </div>
-              </div>
-              <div class="col-md-9 col-9 sideBar-main">
-                <div class="row">
-                  <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
-                    </span>
-                  </div>
-                  <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                    </span>
+              <div class="row sideBar-body col-12">
+                <div class="col-md-3 col-3 sideBar-avatar">
+                  <div class="avatar-icon">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row sideBar-body col-12">
-              <div class="col-md-3 col-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                </div>
-              </div>
-              <div class="col-md-9 col-9 sideBar-main">
-                <div class="row">
-                  <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
-                    </span>
-                  </div>
-                  <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                    </span>
+                <div class="col-md-9 col-9 sideBar-main">
+                  <div class="row">
+                    <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
+                      </span>
+                    </div>
+                    <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row sideBar-body col-12">
-              <div class="col-md-3 col-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
-                </div>
-              </div>
-              <div class="col-md-9 col-9 sideBar-main">
-                <div class="row">
-                  <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
-                    </span>
-                  </div>
-                  <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                    </span>
+              <div class="row sideBar-body col-12">
+                <div class="col-md-3 col-3 sideBar-avatar">
+                  <div class="avatar-icon">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row sideBar-body col-12">
-              <div class="col-md-3 col-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
-                </div>
-              </div>
-              <div class="col-md-9 col-9 sideBar-main">
-                <div class="row">
-                  <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
-                    </span>
-                  </div>
-                  <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                    </span>
+                <div class="col-md-9 col-9 sideBar-main">
+                  <div class="row">
+                    <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
+                      </span>
+                    </div>
+                    <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row sideBar-body col-12">
-              <div class="col-md-3 col-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
-                </div>
-              </div>
-              <div class="col-md-9 col-9 sideBar-main">
-                <div class="row">
-                  <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
-                    </span>
-                  </div>
-                  <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                    </span>
+              <div class="row sideBar-body col-12">
+                <div class="col-md-3 col-3 sideBar-avatar">
+                  <div class="avatar-icon">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
                   </div>
                 </div>
+                <div class="col-md-9 col-9 sideBar-main">
+                  <div class="row">
+                    <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
+                      </span>
+                    </div>
+                    <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            -->
+              <div class="row sideBar-body col-12">
+                <div class="col-md-3 col-3 sideBar-avatar">
+                  <div class="avatar-icon">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+                  </div>
+                </div>
+                <div class="col-md-9 col-9 sideBar-main">
+                  <div class="row">
+                    <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
+                      </span>
+                    </div>
+                    <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row sideBar-body col-12">
+                <div class="col-md-3 col-3 sideBar-avatar">
+                  <div class="avatar-icon">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
+                  </div>
+                </div>
+                <div class="col-md-9 col-9 sideBar-main">
+                  <div class="row">
+                    <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
+                      </span>
+                    </div>
+                    <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row sideBar-body col-12">
+                <div class="col-md-3 col-3 sideBar-avatar">
+                  <div class="avatar-icon">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
+                  </div>
+                </div>
+                <div class="col-md-9 col-9 sideBar-main">
+                  <div class="row">
+                    <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">John Doe
+                      </span>
+                    </div>
+                    <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              -->
           </div>
         </div>
         <div class="side-two" style="display:none;">
@@ -247,7 +246,7 @@
                 {% csrf_token %}
                 <input id="composeText" type="text" class="form-control" name="searchText"
                   placeholder="Search People or Groups"> <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                   <input type="submit" style="display:none;" class="btn btn-primary" value="Create Friend" />
+                <input type="submit" style="display:none;" class="btn btn-primary" value="Create Friend" />
               </form>
             </div>
           </div>
@@ -268,8 +267,8 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row sideBar-body col-12">
+              </div>
+              <div class="row sideBar-body col-12">
               <div class="col-md-3 col-3 sideBar-avatar">
                 <div class="avatar-icon">
                   <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
@@ -285,7 +284,7 @@
                   </div>
                 </div>
               </div>
-            </div>-->
+              </div>-->
           </div>
         </div>
       </div>
@@ -297,144 +296,141 @@
 </div>
 {% endblock content %}
 {% block script %} 
-    <link rel="stylesheet" href="https://onesignal.github.io/emoji-picker/lib/css/emoji.css">
-    <script src="https://onesignal.github.io/emoji-picker/lib/js/config.js"></script>
-    <script src="https://onesignal.github.io/emoji-picker/lib/js/util.js"></script>
-    <script src="https://onesignal.github.io/emoji-picker/lib/js/jquery.emojiarea.js"></script>
-    <script src="https://onesignal.github.io/emoji-picker/lib/js/emoji-picker.js"></script>
-
+<link rel="stylesheet" href="https://onesignal.github.io/emoji-picker/lib/css/emoji.css">
+<script src="https://onesignal.github.io/emoji-picker/lib/js/config.js"></script>
+<script src="https://onesignal.github.io/emoji-picker/lib/js/util.js"></script>
+<script src="https://onesignal.github.io/emoji-picker/lib/js/jquery.emojiarea.js"></script>
+<script src="https://onesignal.github.io/emoji-picker/lib/js/emoji-picker.js"></script>
 <script type="text/javascript">
-$( document ).ready(function() {
-        $(".direct-chat-messages").animate({ scrollTop: $(document).height() }, "fast");
-    });
-  $(function(){
-  $(".heading-compose").click(function() {
-    $(".side-one").css({
-      "display": "none"
-    });
-    $(".side-two").css({
-      "display": "block"
-    });
-  });
-  
-  $(".newMessage-back").click(function() {
-    $(".side-two").css({
-       "display": "none"
-    });
-    $(".side-one").css({
-      "display": "block"
-    });
-  });
-  })
-   $(function() {
-        window.emojiPicker = new EmojiPicker({
-          emojiable_selector: '[data-emojiable=true]',
-          assetsPath: 'http://onesignal.github.io/emoji-picker/lib/img/',
-          popupButtonClasses: 'fa fa-smile-o'
-        });
-        window.emojiPicker.discover();
+  $( document ).ready(function() {
+          $(".direct-chat-messages").animate({ scrollTop: $(document).height() }, "fast");
       });
-      $(document).ready(function(){
-        $("#searchText").on("keyup", function() {
-          var value = $(this).val().toLowerCase();
-          var items =$(".name-meta");
+    $(function(){
+    $(".heading-compose").click(function() {
+      $(".side-one").css({
+        "display": "none"
+      });
+      $(".side-two").css({
+        "display": "block"
+      });
+    });
     
-          //first, hide all:
-          items.parent().parent().parent().parent().hide();
-          items.filter(function () {
-          items.filter(function() {
-            return $(this).text().toLowerCase().indexOf(value) == 0;
-          }).parent().parent().parent().parent().show();
-        });
-      });    
-
-      $("#searchform").submit(function (e) {
-        // preventing from page reload and default actions
-        e.preventDefault();
-        var groupurl = "{% url 'grp_chat' pk='1' %}"
-        var personalurl = "{% url 'personal_chat' pk='1' %}"
-        groupurl = groupurl.slice(0,-2);
-        personalurl = personalurl.slice(0,-2);
-        // serialize the data for sending the form data.
-        var serializedData = $(this).serialize();
-        // make POST ajax call
-        $.ajax({
-            type: 'POST',
-            url: "{% url 'search' %}",
-
-            data: serializedData,
-            success: function (response) {
-                $("#searchform").trigger('reset');
-
-                var instance = JSON.parse(response["instance"]);
-                var user = JSON.parse(response["user"]);
-                console.log(user);
-                for ( var i = 0; i < user.length; i++) {
-                    group = user[i];
-                    pk = group['pk'];
-                    chaturl1 = personalurl + pk + '/';  
-                    fields = group['fields']
-                    $("#userdiv").empty();
-                    $("#userdiv").append(
-                      `
-                      <a class="row sideBar-body col-12" href="${chaturl1}">
-                        <div class="col-md-3 col-3 sideBar-avatar">
-                          <div class="avatar-icon">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                          </div>
-                        </div>
-                        <div class="col-md-9 col-9 sideBar-main">
-                          <div class="row">
-                            <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">${fields["username"]||""}
-                              </span>
-                            </div>
-                            <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </a>`
-                    )
-                }
-                for ( var i = 0; i < instance.length; i++) {
-                    group = instance[i];
-                    pk = group['pk'];
-                    chaturl1 = groupurl + pk + '/';  
-                    fields = group['fields']
-                    $("#userdiv").append(
-                      `
-                      <a class="row sideBar-body col-12" href="${chaturl1}">
-                        <div class="col-md-3 col-3 sideBar-avatar">
-                          <div class="avatar-icon">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                          </div>
-                        </div>
-                        <div class="col-md-9 col-9 sideBar-main">
-                          <div class="row">
-                            <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">${fields["group_name"]||""}
-                              </span>
-                            </div>
-                            <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </a>`
-                    )
-                }
-                
-            },
-            error: function (response) {
-                // alert the error if any error occured
-                //alert(response["responseJSON"]["error"]);
-            }
-        })
+    $(".newMessage-back").click(function() {
+      $(".side-two").css({
+         "display": "none"
+      });
+      $(".side-one").css({
+        "display": "block"
+      });
+    });
     })
+     $(function() {
+          window.emojiPicker = new EmojiPicker({
+            emojiable_selector: '[data-emojiable=true]',
+            assetsPath: 'http://onesignal.github.io/emoji-picker/lib/img/',
+            popupButtonClasses: 'fa fa-smile-o'
+          });
+          window.emojiPicker.discover();
+        });
+        $(document).ready(function(){
+          $("#searchText").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            var items =$(".name-meta");
       
-});
+            //first, hide all:
+            items.parent().parent().parent().parent().hide();
+            items.filter(function () {
+            items.filter(function() {
+              return $(this).text().toLowerCase().indexOf(value) == 0;
+            }).parent().parent().parent().parent().show();
+          });
+        });    
+  
+        $("#searchform").submit(function (e) {
+          // preventing from page reload and default actions
+          e.preventDefault();
+          var groupurl = "{% url 'grp_chat' pk='1' %}"
+          var personalurl = "{% url 'personal_chat' pk='1' %}"
+          groupurl = groupurl.slice(0,-2);
+          personalurl = personalurl.slice(0,-2);
+          // serialize the data for sending the form data.
+          var serializedData = $(this).serialize();
+          // make POST ajax call
+          $.ajax({
+              type: 'POST',
+              url: "{% url 'search' %}",
+  
+              data: serializedData,
+              success: function (response) {
+                  $("#searchform").trigger('reset');
+  
+                  var instance = JSON.parse(response["instance"]);
+                  var user = JSON.parse(response["user"]);
+                  console.log(user);
+                  for ( var i = 0; i < user.length; i++) {
+                      group = user[i];
+                      pk = group['pk'];
+                      chaturl1 = personalurl + pk + '/';  
+                      fields = group['fields']
+                      $("#userdiv").empty();
+                      $("#userdiv").append(
+                        `
+                        <a class="row sideBar-body col-12" href="${chaturl1}">
+                          <div class="col-md-3 col-3 sideBar-avatar">
+                            <div class="avatar-icon">
+                              <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                            </div>
+                          </div>
+                          <div class="col-md-9 col-9 sideBar-main">
+                            <div class="row">
+                              <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">${fields["username"]||""}
+                                </span>
+                              </div>
+                              <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </a>`
+                      )
+                  }
+                  for ( var i = 0; i < instance.length; i++) {
+                      group = instance[i];
+                      pk = group['pk'];
+                      chaturl1 = groupurl + pk + '/';  
+                      fields = group['fields']
+                      $("#userdiv").append(
+                        `
+                        <a class="row sideBar-body col-12" href="${chaturl1}">
+                          <div class="col-md-3 col-3 sideBar-avatar">
+                            <div class="avatar-icon">
+                              <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                            </div>
+                          </div>
+                          <div class="col-md-9 col-9 sideBar-main">
+                            <div class="row">
+                              <div class="col-md-8 col-8 sideBar-name"> <span class="name-meta">${fields["group_name"]||""}
+                                </span>
+                              </div>
+                              <div class="col-md-4 col-4 float-right sideBar-time"> <span class="time-meta float-right">18:18
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </a>`
+                      )
+                  }
+                  
+              },
+              error: function (response) {
+                  // alert the error if any error occured
+                  //alert(response["responseJSON"]["error"]);
+              }
+          })
+      })
+        
+  });
 </script>
 {% block chat_script %}
-
-
 {% endblock chat_script %}
 {% endblock script %}

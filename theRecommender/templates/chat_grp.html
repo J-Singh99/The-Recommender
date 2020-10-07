@@ -1,139 +1,144 @@
 {% extends "chat.html" %}
 {% load static %}
 {% block chat %} 
-<div class="row heading">
-          <div class="col-md-2 col-2 heading-avatar">
-            <div class="heading-avatar-icon">
-              <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
-            </div>
+<div class="side-one-chat">
+  <div class="row heading">
+    <div class="col-md-2 col-2 heading-avatar">
+      <div class="heading-avatar-icon">
+        <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+      </div>
+    </div>
+    <div class="col-md-9 col-9 heading-name"> 
+      <a class="heading-name-meta">John Doe</a>
+      <span class="heading-online">Online</span>
+    </div>
+    <div class="col-md-1 col-1"> <i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="message direct-chat-messages scrollbar-warning" id="conversation">
+  <div class="row message-previous">
+    <div class="col-md-12 previous"> 
+      <a onclick="previous(this)" id="ankitjain28" name="20">
+      Show Previous Message!
+      </a>
+    </div>
+  </div>
+  {% for i in chat_messages %}
+  <div class="row message-body">
+  {% if user == i.sender %}
+  <div class="col-md-12 message-main-sender">
+    <div class="sender">
+      {% else  %}
+      <div class="col-md-12 message-main-receiver">
+        <div class="receiver">
+          <div style = "color: #35cd96!important;"> {{ i.sender }} </div>
+          {% endif  %}
+          <div class="message-text">
+            {{ i.message }} 
           </div>
-          <div class="col-md-9 col-9 heading-name"> 
-            <a class="heading-name-meta">John Doe</a>
-            <span class="heading-online">Online</span>
-          </div>
-          <div class="col-md-1 col-1"> <i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
-          </div>
+          <span class="message-time float-right"> 
+          {{ i.timestamp }}
+          </span>
         </div>
-        <div class="message direct-chat-messages scrollbar-warning" id="conversation">
-          <div class="row message-previous">
-            <div class="col-md-12 previous"> 
-              <a onclick="previous(this)" id="ankitjain28" name="20">
-              Show Previous Message!
-              </a>
-            </div>
-          </div>
-          {% for i in chat_messages %}
-            <div class="row message-body"> 
-                {% if user == i.sender %}
-                  <div class="col-md-12 message-main-sender"> <div class="sender">
-                {% else  %}
-                  <div class="col-md-12 message-main-receiver"> <div class="receiver">
-                  <div style = "color: #35cd96!important;"> {{ i.sender }} </div>
-                {% endif  %}
-                  <div class="message-text">
-                    {{ i.message }} 
-                  </div> 
-                  <span class="message-time float-right"> 
-                    {{ i.timestamp }}
-                  </span>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-          <!--<div class="row message-body">
-            <div class="col-md-12 message-main-receiver">
-              <div class="receiver">
-                <div style = "color: #35cd96!important;"> User Name </div>
-                <div class="message-text">Hi, what are you doing?!</div>
-                <span class="message-time float-right">
-                Sun
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="row message-body">
-            <div class="col-md-12 message-main-sender">
-              <div class="sender">
-                <div class="message-text">I am doing nothing man!</div>
-                <span class="message-time float-right">
-                Sun
-                </span>
-              </div>
-            </div>
-          </div>-->
+      </div>
+    </div>
+    {% endfor %}
+    <!--<div class="row message-body">
+      <div class="col-md-12 message-main-receiver">
+        <div class="receiver">
+          <div style = "color: #35cd96!important;"> User Name </div>
+          <div class="message-text">Hi, what are you doing?!</div>
+          <span class="message-time float-right">
+          Sun
+          </span>
         </div>
-        <div class="row reply">
-          <div class="col-md-10 col-10 reply-main">
-            <textarea class="form-control"  rows="1" id="chat-message-input"  ></textarea>
-          </div>
-          <div class="col-md-1 col-1 reply-recording"> <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
-          </div>
-          <div class="col-md-1 col-1 reply-send" id="chat-message-submit"> <i class="fa fa-send fa-2x" aria-hidden="true"></i>
-          </div> 
+      </div>
+      </div>
+      <div class="row message-body">
+      <div class="col-md-12 message-main-sender">
+        <div class="sender">
+          <div class="message-text">I am doing nothing man!</div>
+          <span class="message-time float-right">
+          Sun
+          </span>
         </div>
+      </div>
+      </div>-->
+  </div>
+  <div class="row reply">
+    <div class="col-md-10 col-10 reply-main">
+      <textarea class="form-control"  rows="1" id="chat-message-input"  ></textarea>
+    </div>
+    <div class="col-md-1 col-1 reply-recording"> <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+    </div>
+    <div class="col-md-1 col-1 reply-send" id="chat-message-submit"> <i class="fa fa-send fa-2x" aria-hidden="true"></i>
+    </div>
+  </div>
+</div>
+<div class="side-two-chat" style="display:none;">
 
+</div>
 {% endblock chat %}
-
 {% block chat_script %}
 <script>
-var chatSocket = new WebSocket(
-        'ws://' + window.location.host +
-        '/ws/chatting/grp/' + {{ pk }} + '/');
-
-chatSocket.onmessage = function (e) {
-        var data = JSON.parse(e.data);
-        console.log(data)
-        
-        var message = data['message'];
-        var user = data['user'];
-        var timestamp = data['timestamp'];
-        var node = ""
-               
-        node    +=    '<div class="row message-body"> <div class="col-md-12 message-main-'
-        if(user == '{{user.username}}')
-        {
-            node += 'sender"> <div class="sender">'
-        }
-        else
-        {
-            node    +=     'receiver"> <div class="receiver">'
-            node    +=     '<div style = "color: #35cd96!important;"> '
-            node    +=     user
-            node    +=     '</div>'
-        }
-        
-        node    +=     '<div class="message-text">'
-        node    +=      message 
-        node    +=    '</div> <span class="message-time float-right">'
-        node    +=     timestamp
-
-        node    +=     '</span></div></div></div>'
-
-        document.getElementById("conversation").innerHTML += node;
-
-        $(".direct-chat-messages").animate({ scrollTop: $(document).height() }, "fast");
-};
-
-
-    chatSocket.onclose = function (e) {
-        console.error('Chat socket closed unexpectedly');
-    };
-    document.querySelector('#chat-message-input').onkeyup = function (e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#chat-message-submit').click();
-        }
-    };
-    document.querySelector('#chat-message-submit').onclick = function (e) {
-        var messageInputDom = document.querySelector('#chat-message-input');
-
-        //Added username to display the message
-        var message = messageInputDom.value ;
-        console.log(message)
-        chatSocket.send(JSON.stringify({
-            'message': message,
-        }));
-
-        messageInputDom.value = '';
-    };
+  var chatSocket = new WebSocket(
+          'ws://' + window.location.host +
+          '/ws/chatting/grp/' + {{ pk }} + '/');
+  
+  chatSocket.onmessage = function (e) {
+          var data = JSON.parse(e.data);
+          console.log(data)
+          
+          var message = data['message'];
+          var user = data['user'];
+          var timestamp = data['timestamp'];
+          var node = ""
+                 
+          node    +=    '<div class="row message-body"> <div class="col-md-12 message-main-'
+          if(user == '{{user.username}}')
+          {
+              node += 'sender"> <div class="sender">'
+          }
+          else
+          {
+              node    +=     'receiver"> <div class="receiver">'
+              node    +=     '<div style = "color: #35cd96!important;"> '
+              node    +=     user
+              node    +=     '</div>'
+          }
+          
+          node    +=     '<div class="message-text">'
+          node    +=      message 
+          node    +=    '</div> <span class="message-time float-right">'
+          node    +=     timestamp
+  
+          node    +=     '</span></div></div></div>'
+  
+          document.getElementById("conversation").innerHTML += node;
+  
+          $(".direct-chat-messages").animate({ scrollTop: $(document).height() }, "fast");
+  };
+  
+  
+      chatSocket.onclose = function (e) {
+          console.error('Chat socket closed unexpectedly');
+      };
+      document.querySelector('#chat-message-input').onkeyup = function (e) {
+          if (e.keyCode === 13) {  // enter, return
+              document.querySelector('#chat-message-submit').click();
+          }
+      };
+      document.querySelector('#chat-message-submit').onclick = function (e) {
+          var messageInputDom = document.querySelector('#chat-message-input');
+  
+          //Added username to display the message
+          var message = messageInputDom.value ;
+          console.log(message)
+          chatSocket.send(JSON.stringify({
+              'message': message,
+          }));
+  
+          messageInputDom.value = '';
+      };
 </script>
 {% endblock chat_script %}
