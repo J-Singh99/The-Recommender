@@ -159,7 +159,7 @@ $(document).ready(function() {
                 var task = JSON.parse(response["task"]);
                 var id=JSON.parse(response["id"]);
                 var pages=JSON.parse(response["page_range"])
-                $('#pagination_1').html('');
+                //$('#pagination_1').html('');
                 for ( var i = 1; i <= pages; i++) {
                   $("#pagination_1").append(
                       `<li class="todo_page page-link" data-val="`+i+`">`+i+`</li>`
@@ -206,7 +206,7 @@ $(document).ready(function() {
                 $('#pagination_1').html('');
                 for ( var i = 1; i <= pages; i++) {
                   $("#pagination_1").append(
-                      `<li class="todo_page page-link" data-val="`+i+`">`+i+`</li>`
+                      `<li class="todo_page" data-val="`+i+`">`+i+`</li>`
                   );
                 }
                   task.remove();
@@ -288,7 +288,7 @@ $(document).ready(function() {
 
 //********************PAGINATION********************/
 $(document).ready(function() {
-  $('.todo_page').click(function(event){
+  $('#pagination_1').on("click",'.todo_page',function(event){
       event.preventDefault();
       page_n = $(this).data('val');
       // ajax
@@ -301,7 +301,7 @@ $(document).ready(function() {
               },
               success: function (resp) {
                 $('#task_div').html('')
-            //    $('#pagination_1').html('')
+                $('#pagination_1').html('')
                 $.each(resp.results, function(i, val) {
                   $('#task_div').append(
                     `<li>
