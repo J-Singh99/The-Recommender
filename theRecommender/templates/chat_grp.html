@@ -1,69 +1,86 @@
 {% extends "chat.html" %}
 {% load static %}
 {% block chat %} 
-<div class="side-one-chat">
-  <div class="row heading">
-    <div class="col-md-2 col-2 heading-avatar">
+ <div class="col-md-8 conversation">
+        
+  <div class="row heading" >
+    <div class="col-md-2 col-2 heading-avatar" id ="backbutton" >
       <div class="heading-avatar-icon">
         <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
       </div>
     </div>
-    <div class="col-md-9 col-9 heading-name"> 
+    <div class="col-md-9 col-9 heading-name" id = "chat-heading"> 
       <a class="heading-name-meta">John Doe</a>
       <span class="heading-online">Online</span>
     </div>
     <div class="col-md-1 col-1"> <i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
     </div>
   </div>
-  <div class="message direct-chat-messages scrollbar-warning" id="conversation">
-  <div class="row message-previous">
-    <div class="col-md-12 previous"> 
-      <a onclick="previous(this)" id="ankitjain28" name="20">
-      Show Previous Message!
-      </a>
-    </div>
-  </div>
-  {% for i in chat_messages %}
-  <div class="row message-body">
-  {% if user == i.sender %}
-  <div class="col-md-12 message-main-sender">
-    <div class="sender">
-      {% else  %}
-      <div class="col-md-12 message-main-receiver">
-        <div class="receiver">
-          <div style = "color: #35cd96!important;"> {{ i.sender }} </div>
-          {% endif  %}
-          <div class="message-text">
-            {{ i.message }} 
-          </div>
-          <span class="message-time float-right"> 
-          {{ i.timestamp }}
-          </span>
-        </div>
+  <div class="message direct-chat-messages scrollbar-warning side-one-chat" id="conversation">
+    <div class="row message-previous">
+      <div class="col-md-12 previous"> 
+        <a onclick="previous(this)" id="ankitjain28" name="20">
+        Show Previous Message!
+        </a>
       </div>
     </div>
-    {% endfor %}
-    <!--<div class="row message-body">
-      <div class="col-md-12 message-main-receiver">
-        <div class="receiver">
-          <div style = "color: #35cd96!important;"> User Name </div>
-          <div class="message-text">Hi, what are you doing?!</div>
-          <span class="message-time float-right">
-          Sun
-          </span>
-        </div>
-      </div>
-      </div>
+    {% for i in chat_messages %}
       <div class="row message-body">
+      {% if user == i.sender %}
       <div class="col-md-12 message-main-sender">
         <div class="sender">
-          <div class="message-text">I am doing nothing man!</div>
-          <span class="message-time float-right">
-          Sun
-          </span>
+          {% else  %}
+          <div class="col-md-12 message-main-receiver">
+            <div class="receiver">
+              <div style = "color: #35cd96!important;"> {{ i.sender }} </div>
+              {% endif  %}
+              <div class="message-text">
+                {{ i.message }} 
+              </div>
+              <span class="message-time float-right"> 
+              {{ i.timestamp }}
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>-->
+    {% endfor %}
+      <!--<div class="row message-body">
+        <div class="col-md-12 message-main-receiver">
+          <div class="receiver">
+            <div style = "color: #35cd96!important;"> User Name </div>
+            <div class="message-text">Hi, what are you doing?!</div>
+            <span class="message-time float-right">
+            Sun
+            </span>
+          </div>
+        </div>
+        </div>
+        <div class="row message-body">
+        <div class="col-md-12 message-main-sender">
+          <div class="sender">
+            <div class="message-text">I am doing nothing man!</div>
+            <span class="message-time float-right">
+            Sun
+            </span>
+          </div>
+        </div>
+        </div>-->
+  </div>
+  <div class="message direct-chat-messages scrollbar-warning side-two-chat" style="display:none;">
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Inbox
+          <span><a href="" ><i class="fa fa-trash-o"></i></a></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Ads
+          <span class="badge badge-primary badge-pill">50</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Junk
+          <span class="badge badge-primary badge-pill">99</span>
+        </li>
+      </ul>
   </div>
   <div class="row reply">
     <div class="col-md-10 col-10 reply-main">
@@ -74,8 +91,6 @@
     <div class="col-md-1 col-1 reply-send" id="chat-message-submit"> <i class="fa fa-send fa-2x" aria-hidden="true"></i>
     </div>
   </div>
-</div>
-<div class="side-two-chat" style="display:none;">
 
 </div>
 {% endblock chat %}
@@ -140,5 +155,29 @@
   
           messageInputDom.value = '';
       };
+$( document ).ready(function() {
+      $(function(){
+          $("#chat-heading").click(function() {
+              $(".side-one-chat").css({
+              "display": "none"
+            });
+            $("#backbutton").html('<i class="fa fa-arrow-left" aria-hidden="true"></i>');
+            
+              $(".side-two-chat").css({
+              "display": "block"
+            });
+          });
+          
+          $("#backbutton").click(function() {
+              $(".side-two-chat").css({
+              "display": "none"
+            });
+            $("#backbutton").html('<div class="heading-avatar-icon"><img src="https://bootdey.com/img/Content/avatar/avatar6.png"></div>');
+              $(".side-one-chat").css({
+              "display": "block"
+            });
+          });
+      })
+});
 </script>
 {% endblock chat_script %}

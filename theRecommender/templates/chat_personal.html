@@ -1,6 +1,7 @@
 {% extends "chat.html" %}
 {% load static %}
 {% block chat %} 
+<div class="col-md-8 conversation">
 <div class="row heading">
           <div class="col-md-2 col-2 heading-avatar">
             <div class="heading-avatar-icon">
@@ -79,7 +80,7 @@
           <div class="col-md-1 col-1 reply-send" id="chat-message-submit"> <i class="fa fa-send fa-2x" aria-hidden="true"></i>
           </div> 
         </div>
-
+</div>
 {% endblock chat %}
 
 {% block chat_script %}

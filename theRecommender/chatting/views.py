@@ -45,6 +45,7 @@ def chat_grp(request, pk):
     group = 'chat_grp_%s' % str(pk) 
     chat_messages = Message.objects.all().filter(group=group).order_by('timestamp')
     userlist, grouplist = userorgrouplist(request.user)
+    
     return render(request, 'chat_grp.html' , {'page':'chat', 'pk': pk, 'chat_messages': chat_messages, 'userlist':userlist, 'grouplist':grouplist} )
 
 @login_required
