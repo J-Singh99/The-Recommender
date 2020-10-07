@@ -1,9 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
+from accounts.models import User
 
-
+#need to make a model for tags and user relation
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
@@ -16,9 +17,6 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
-class Tag(models.Model):
-    club_tag = models.CharField(max_length=3, unique=True,default="DEF")
-    uni_tag = models.CharField(max_length=3, unique=True,default="000")
 
 class events(models.Model):
     creator = models.ForeignKey(User, on_delete= models.CASCADE)
@@ -27,7 +25,9 @@ class events(models.Model):
     date = models.DateField(auto_now=False, auto_now_add=False)
     time = models.TimeField(auto_now=False, auto_now_add=False)
     venue = models.CharField(max_length=100, unique=True) 
-    event_tags = models.ForeignKey(Tag, on_delete= models.CASCADE)
+    #event_tags = models.ForeignKey(Tag, on_delete= models.CASCADE)
+    club_tag = models.CharField(max_length=3, unique=True,default="DEF")
+    uni = models.ForeignKey(User, verbose_name='university', on_delete= models.CASCADE)
     
 class AdminOf(models.Model):
     event      = models.ForeignKey(events, verbose_name='event', on_delete= models.CASCADE)
