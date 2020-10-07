@@ -18,99 +18,84 @@
                   <i class="ion ion-clipboard"></i>
                   <h3 class="box-title">To Do List</h3>
                   <div class="box-tools pull-right">
-                    <ul class="pagination pagination-sm list-inline">
-                      <li class="page-item"><a href="#" class="page-link">&#xAB;</a>
-                      </li>
-                      <li class="page-item"><a href="#" class="page-link">1</a>
-                      </li>
-                      <li class="page-item"><a href="#" class="page-link">2</a>
-                      </li>
-                      <li class="page-item"><a href="#" class="page-link">3</a>
-                      </li>
-                      <li class="page-item"><a href="#" class="page-link">&#xBB;</a>
-                      </li>
+                    <ul id="pagination_1" class="pagination pagination-sm list-inline">
+                    {% for i in page_range %}
+                      <li class="todo_page page-link" data-val="{{i}}">{{i}}</li>
+                    {% endfor %}
+                   <!-- {% if results.has_other_pages %}
+                        {% if results.has_previous %}
+                          <li><a class="todo_page" href="{{ results.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                          <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in results.paginator.page_range %}
+                          {% if results.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                          {% else %}
+                            <li><a class="todo_page" href="{{ i }}">{{ i }}</a></li>
+                          {% endif %}
+                        {% endfor %}
+                        {% if results.has_next %}
+                          <li><a class="todo_page" href="{{ results.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                          <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    {% endif %}-->
                     </ul>
                   </div>
                 </div>
                 <div class="box-body">
-                  <ul class="todo-list ui-sortable">
+               
+                  <ul class="todo-list ui-sortable" id="task_div">
+                    {% for i in first_page %}
+                    {% if not i.completed %}
                     <li>
                       <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
                       </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Design a nice theme</span>
-                      <small class="badge badge-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                      <div
-                        class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Make the theme responsive</span>
-                      <small class="badge badge-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                      <div
-                        class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Let theme shine like a star</span>
-                      <small class="badge badge-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                      <div
-                        class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Let theme shine like a star</span>
-                      <small class="badge badge-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                      <div
-                        class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Check your messages and notifications</span>
-                      <small
-                        class="badge badge-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+                      <input type="checkbox" value="{{i.id}}" name="{{i.task}}"> <span class="text">{{i.task}}</span>
+                      <small class="badge badge-danger"><i class="fa fa-clock-o"></i> {{i.deadline}}</small>
                       <div class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
+                        <button class="delete_task btn btn-danger" data-val= "{% url 'deletetask' id=i.id %}"><i class="fa fa-trash-o"></i></button>
                       </div>
                     </li>
-                    <li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Let theme shine like a star</span>
-                      <small class="badge badge-dark"><i class="fa fa-clock-o"></i> 1 month</small>
-                      <div
-                        class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
+                    {% endif %}
+                    {% endfor %}
                   </ul>
                 </div>
                 <div class="box-footer clearfix no-border">
-                  <button type="button" class="btn btn-secondary float-right"><i class="fa fa-plus"></i> Add item</button>
+                  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#add_task"><i class="fa fa-plus"></i> Add item</button>
+                  <button type="submit" class="btn btn-success" id="completed" style="align:right"> Mark Completed </button>
                 </div>
+                
+              </div>
+              <div id="add_task" class="collapse">
+                <form method="post" id="addTask" enctype="multipart/form-data" class="needs-validation" novalidate >
+                  {% csrf_token %}
+                  <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                      <label for="validationTooltip03">Task</label>
+                      <!--<input type="text" class="form-control" id="validationTooltip03" name="input_task" value="" placeholder="What's your task!" required>-->
+                      {{form.task}}
+                      <div class="invalid-tooltip">
+                        Please provide a valid task.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                      <label for="validationTooltip04">Deadline</label>
+                     <!-- <input type="datetime-local" class="form-control" name="input_deadline" value="" id="validationTooltip04" required>-->
+                      {{form.deadline}}
+                      <div class="invalid-tooltip">
+                        Please provide a valid deadline.
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Submit form</button>
+                </form>
+                <br>
               </div>
             </div>
             <div class="col-lg-6">
@@ -122,98 +107,227 @@
                     <ul class="pagination pagination-sm list-inline">
                       <li class="page-item"><a href="#" class="page-link">&#xAB;</a>
                       </li>
-                      <li class="page-item"><a href="#" class="page-link">1</a>
-                      </li>
-                      <li class="page-item"><a href="#" class="page-link">2</a>
-                      </li>
-                      <li class="page-item"><a href="#" class="page-link">3</a>
-                      </li>
                       <li class="page-item"><a href="#" class="page-link">&#xBB;</a>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div class="box-body">
-                  <ul class="todo-list ui-sortable">
+                  <ul class="todo-list ui-sortable" id="comp_task_list">
+                   <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}' /> 
+                    {% for i in tasks %}
+                    {% if i.completed %}
                     <li>
                       <span class="handle ui-sortable-handle">
                       <i class="fa fa-ellipsis-v"></i>
                       <i class="fa fa-ellipsis-v"></i>
                       </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Design a nice theme</span>
-                      <small class="badge badge-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                      <div
-                        class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
+                      <span class="text">{{i.task}}</span>
+                      <div class="tools">
+                        <button class="delete_comp_task btn btn-secondary" data-val= "{% url 'deletetask' id=i.id %}"><i class="fa fa-trash-o"></i></button>
                       </div>
                     </li>
-                    <li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Make the theme responsive</span>
-                      <small class="badge badge-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                      <div
-                        class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Let theme shine like a star</span>
-                      <small class="badge badge-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                      <div
-                        class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Let theme shine like a star</span>
-                      <small class="badge badge-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                      <div
-                        class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Check your messages and notifications</span>
-                      <small
-                        class="badge badge-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                      <div class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <input type="checkbox" value="" name=""> <span class="text">Let theme shine like a star</span>
-                      <small class="badge badge-dark"><i class="fa fa-clock-o"></i> 1 month</small>
-                      <div
-                        class="tools"> <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                      </div>
-                    </li>
+                    {% endif  %}
+                    {% endfor %}
                   </ul>
                 </div>
                 <div class="box-footer clearfix no-border">
-                  <button type="button" class="btn btn-secondary float-right"><i class="fa fa-minus"></i> Delete</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
+     
 {% endblock content %}
+{% block script %}
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+    var page_n=1;
+    //************ADD TASK FORM SUBMISSION****************//
+$(document).ready(function() {
+      $("#addTask").submit(function (e) {
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+         
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'addtask' %}",
+            data: serializedData,
+           
+            success: function (response) {
+                var task = JSON.parse(response["task"]);
+                var id=JSON.parse(response["id"]);
+                var pages=JSON.parse(response["page_range"])
+                $('#pagination_1').html('');
+                for ( var i = 1; i <= pages; i++) {
+                  $("#pagination_1").append(
+                      `<li class="todo_page page-link" data-val="`+i+`">`+i+`</li>`
+                  );
+                }
+                if(page_n>=pages)
+                {
+                  for ( var i = 0; i < task.length; i++) {
+                      latestTask = task[i];
+                      fields = latestTask['fields']
+                      $("#task_div").append(
+                        `
+                        <li>
+                        <span class="handle ui-sortable-handle">
+                          <i class="fa fa-ellipsis-v"></i>
+                          <i class="fa fa-ellipsis-v"></i>
+                        </span>
+                        <input type="checkbox" value="${id}" name="${fields["task"]}"> <span class="text">${fields["task"]||""}</span>
+                        <small class="badge badge-danger"><i class="fa fa-clock-o"></i>${fields["deadline"]||""}</small>
+                        <div class="tools"> <i class="fa fa-edit"></i>
+                          <button class="delete_task btn btn-danger" data-val="todo/deletetask/${id}"><i class="fa fa-trash-o"></i></button>
+                        </div>
+                      </li>`
+                      )
+                  }
+               
+              }
+               $("#addTask")[0].reset();
+            },
+        });
+    });
+  });
+//***************************************************//
+
+//*****************DELETE TASK************************//
+$(document).ready(function() {
+  $(".delete_task btn btn-danger").click(function () {
+           var endpoint = $(this).data('val');
+           var task = $(this).parent().parent();
+          $.ajax({
+              url: endpoint,
+              success: function (response) {
+                var pages=JSON.parse(response["page_range"])
+                $('#pagination_1').html('');
+                for ( var i = 1; i <= pages; i++) {
+                  $("#pagination_1").append(
+                      `<li class="todo_page page-link" data-val="`+i+`">`+i+`</li>`
+                  );
+                }
+                  task.remove();
+              },
+              error: function (response) {
+              }
+          });
+      });
+});
+
+//****************************************************//
+
+//*****************DELETE COMPLETED TASK**************//
+
+$(document).ready(function() {
+  $(".delete_comp_task").click(function () {
+           var endpoint = $(this).data('val');
+           var task = $(this).parent().parent();
+          $.ajax({
+              url: endpoint,
+              success: function (response) {
+                  task.remove();
+              },
+              error: function (response) {
+              }
+          })
+      })
+});
+//**************************************************//
+
+//*****************MARK COMPLETED TASK**************//
+$(document).ready(function() {
+  $("#completed").click(function () {
+    var id=[];
+    var task=[];
+    var to_remove=[];
+    $(':checkbox:checked').each(function(i){
+      id[i]=$(this).val();
+      task[i]=$(this).attr('name');
+      to_remove[i]=$(this).parent();
+    })
+    
+    if(id.length==0){
+      alert("Select items to delete")
+    }else{
+      console.log(id)
+      $.ajax({
+        url:"{% url 'markcomplete' %}",
+        type: 'GET',
+        data: {id},
+        success:function(response){
+          var pages=JSON.parse(response["page_range"])
+          $('#pagination_1').html('');
+          for ( var i = 1; i <= pages; i++) {
+            $("#pagination_1").append(
+                `<li class="todo_page page-link" data-val="`+i+`">`+i+`</li>`
+            );
+          }
+          for(var i=0;i<id.length;i++){
+              to_remove[i].remove();
+              var to_add=`<li>
+                      <span class="handle ui-sortable-handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                       <span class="text">${task[i]}</span>
+                      <div class="tools">
+                        <button class="delete_comp_task btn btn-secondary" data-val= "todo/deletetask/${id[i]}"><i class="fa fa-trash-o"></i></button>
+                      </div>
+                    </li>`
+              $("#comp_task_list").append(to_add);
+          }
+        }
+      })
+    }
+  })
+});
+//**************************************************/
+
+//********************PAGINATION********************/
+$(document).ready(function() {
+  $('.todo_page').click(function(event){
+      event.preventDefault();
+      page_n = $(this).data('val');
+      // ajax
+          $.ajax({
+                  type: "POST",
+                  url: "{% url 'index' %}", // name of url
+                  data : {    
+                  page_n : page_n, //page_number
+                  csrfmiddlewaretoken: '{{ csrf_token }}',
+              },
+              success: function (resp) {
+                $('#task_div').html('')
+            //    $('#pagination_1').html('')
+                $.each(resp.results, function(i, val) {
+                  $('#task_div').append(
+                    `<li>
+                        <span class="handle ui-sortable-handle">
+                          <i class="fa fa-ellipsis-v"></i>
+                          <i class="fa fa-ellipsis-v"></i>
+                        </span>
+                        <input type="checkbox" value="${val.id}" name="${val.task}"> <span class="text">${val.task}</span>
+                        <small class="badge badge-danger"><i class="fa fa-clock-o"></i>${val.deadline}</small>
+                        <div class="tools"> <i class="fa fa-edit"></i>
+                          <button class="delete_task btn btn-danger" data-val="todo/deletetask/${val.id}"><i class="fa fa-trash-o"></i></button>
+                        </div>
+                      </li>`
+                  );
+                });
+              },
+          }); 
+
+  });    
+});
+//**************************************************/
+
+
+
+    </script>
+{% endblock script %}
+
+
+
