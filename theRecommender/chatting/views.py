@@ -62,7 +62,7 @@ def search(request):
 
 @login_required
 def create_group(request):
-    if request.method == 'POST':
+    if request.method == 'POST' :
         form = CreateGroup(request.POST, request.FILES)
         if form.is_valid():
             user = request.user
