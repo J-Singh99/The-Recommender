@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="col-md-9 col-9 heading-name" id = "chat-heading"> 
-      <a class="heading-name-meta">John Doe</a>
+      <a class="heading-name-meta">{{ group.group_name }}</a>
       <span class="heading-online">Online</span>
     </div>
     <div class="col-md-1 col-1"> <i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
@@ -68,19 +68,16 @@
   </div>
   <div class="message direct-chat-messages scrollbar-warning side-two-chat" style="display:none;">
       <ul class="list-group">
+      {% for i in users %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          Inbox
-          <span><a href="" ><i class="fa fa-trash-o"></i></a></span>
+           {{ i.username }}
+           {% if group.admin.pk == user.pk and  group.admin.pk != i.pk %}
+          <span><a href="{% url 'kickoutuser' uk=i.pk gk=group.pk %}" ><i class="fa fa-trash-o"></i></a></span>
+          {% endif %}
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          Ads
-          <span class="badge badge-primary badge-pill">50</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          Junk
-          <span class="badge badge-primary badge-pill">99</span>
-        </li>
+        {% endfor %}
       </ul>
+      
   </div>
   <div class="row reply">
     <div class="col-md-10 col-10 reply-main">

@@ -6,7 +6,7 @@ from .forms import CreateGroup
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.http import JsonResponse
-from django.contrib.auth.models import User
+from accounts.models import User
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 # Create your views here.
@@ -45,8 +45,21 @@ def chat_grp(request, pk):
     group = 'chat_grp_%s' % str(pk) 
     chat_messages = Message.objects.all().filter(group=group).order_by('timestamp')
     userlist, grouplist = userorgrouplist(request.user)
-    
-    return render(request, 'chat_grp.html' , {'page':'chat', 'pk': pk, 'chat_messages': chat_messages, 'userlist':userlist, 'grouplist':grouplist} )
+    group = Group.objects.get(pk=pk)
+    joinedgroupusers = group.joinedgroups_set.all()
+    users = list()
+    for i in joinedgroupusers:
+        users.append(i.user)    
+    print(users)
+    return render(request, 'chat_grp.html' , {'page':'chat', 'pk': pk, 'chat_messages': chat_messages, 'userlist':userlist, 'grouplist':grouplist, 'group': group, 'users': users} )
+
+@login_required
+def removeuser(request, uk, gk):
+    group = Group.objects.get(pk=gk)
+    user = User.objects.get(pk=uk)
+    JoinedGroups.objects.filter(group=group, user=user).delete();
+    return redirect(reverse('grp_chat', kwargs={'pk':gk})) 
+
 
 @login_required
 def search(request):
