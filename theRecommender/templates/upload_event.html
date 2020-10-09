@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %} 
+    <title>Adding A New Event</title>
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util_uploadevent.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main_uploadevent.css' %}">
+{% endblock link %}
+{% block content %}
+
+	<div class="bg-contact2" style="background-image: url("{% static 'images/bg-01.jpg' %}")">
+			<div class="wrap-contact2">
+				<form method = "POST" class="contact2-form validate-form">
+					{% csrf_token %}
+					<span class="contact2-form-title">
+						+Add A New Event
+					</span>
+
+					<div class="wrap-input2 validate-input" data-validate="Name is required">
+						{{ form.eventname }} 
+						<span class="focus-input2" data-placeholder="EVENT NAME"></span>
+					</div>
+					
+					<div class="form-group row">
+						<label for="example-date-input" class="col-2 col-form-label">CLUB NAME</label>
+						<div class="col-10">
+						  {{ form.tag }} 
+						</div>
+					  </div>
+					<div class="form-group row">
+					  <label for="example-date-input" class="col-2 col-form-label">EVENT DATE</label>
+					  <div class="col-10">
+					    {{ form.date }} 
+					  </div>
+					</div>
+
+					<div class="form-group row">
+					  <label for="example-time-input" class="col-2 col-form-label">EVENT TIME</label>
+					  <div class="col-10">
+					    {{ form.time }} 
+					  </div>
+					</div>
+
+					<div class="wrap-input2 validate-input" data-validate="VENUE is required">
+						{{ form.venue }} 
+						<span class="focus-input2" data-placeholder="EVENT VENUE"></span>
+					</div>
+
+					<div class="wrap-input2 validate-input" data-validate = "DESCRIPTION is required">
+						{{ form.description }} 
+
+						<span class="focus-input2" data-placeholder="EVENT DESCRIPTION"></span>
+					</div>
+
+					<div class="container-contact2-form-btn">
+						<div class="wrap-contact2-form-btn">
+							<div class="contact2-form-bgbtn"></div>
+							<button class="contact2-form-btn">
+								Add Event
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+    </div>
+    
+
+	<script src="js/main_uploadevt.js"></script>
+
+
+{% endblock content %}

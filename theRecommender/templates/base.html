@@ -18,7 +18,15 @@
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" class='smooth-scroll scrollbar scrollbar-black bordered-black square thin'>
-    <div class="wrapper d-flex align-items-stretch">
+  {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error'%}danger{% else %}{{message.tags}}{% endif %} alert-dismissible fade show mb-0" role="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{message}}
+        </div>
+      {% endfor %}
+    {% endif %}  
+  <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar">
         <div class="p-4">
           <a href="#" class="img logo rounded-circle mb-4" style="background-image: url({% static 'images/logo.jpg' %});"></a>
@@ -38,8 +46,8 @@
             <li {% ifequal page "chat" %} class = "active" {% endifequal %}>
               <a href="{% url 'chat' %}">Chat</a>
             </li>
-            <li>
-              <a href="#">Assignments</a>
+            <li {% ifequal page "events" %} class = "active" {% endifequal %}>
+              <a href="{% url 'events' %}">Events</a>
             </li>
             <li>
               <a href="#">To Do List</a>
