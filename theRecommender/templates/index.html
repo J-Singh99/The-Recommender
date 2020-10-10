@@ -22,45 +22,24 @@
                     {% for i in page_range %}
                       <li class="todo_page page-link" data-val="{{i}}">{{i}}</li>
                     {% endfor %}
-                   <!-- {% if results.has_other_pages %}
-                        {% if results.has_previous %}
-                          <li><a class="todo_page" href="{{ results.previous_page_number }}">&laquo;</a></li>
-                        {% else %}
-                          <li class="disabled"><span>&laquo;</span></li>
-                        {% endif %}
-                        {% for i in results.paginator.page_range %}
-                          {% if results.number == i %}
-                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                          {% else %}
-                            <li><a class="todo_page" href="{{ i }}">{{ i }}</a></li>
-                          {% endif %}
-                        {% endfor %}
-                        {% if results.has_next %}
-                          <li><a class="todo_page" href="{{ results.next_page_number }}">&raquo;</a></li>
-                        {% else %}
-                          <li class="disabled"><span>&raquo;</span></li>
-                        {% endif %}
-                    {% endif %}-->
                     </ul>
                   </div>
                 </div>
                 <div class="box-body">
-               
                   <ul class="todo-list ui-sortable" id="task_div">
                     {% for i in first_page %}
-                    {% if not i.completed %}
                     <li>
                       <span class="handle ui-sortable-handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                       <input type="checkbox" value="{{i.id}}" name="{{i.task}}"> <span class="text">{{i.task}}</span>
-                      <small class="badge badge-danger"><i class="fa fa-clock-o"></i> {{i.deadline}}</small>
-                      <div class="tools"> <i class="fa fa-edit"></i>
+                      <small class="old_dead badge badge-danger"><i class="fa fa-clock-o"></i> {{i.deadline}}</small>
+                      <div class="tools"> 
+                        <button class="edit_task_icon btn btn-warning" data-toggle="collapse" data-target="#edit_task" data-val= "{{i.id}}"><i class="fa fa-edit"></i></button>
                         <button class="delete_task btn btn-danger" data-val= "{% url 'deletetask' id=i.id %}"><i class="fa fa-trash-o"></i></button>
                       </div>
                     </li>
-                    {% endif %}
                     {% endfor %}
                   </ul>
                 </div>
@@ -97,6 +76,22 @@
                 </form>
                 <br>
               </div>
+              <div id="edit_task" class="collapse">
+                <form method="post" action="{% url 'edittask' %}" id="editTask" enctype="multipart/form-data" class="needs-validation" novalidate >
+                  {% csrf_token %}
+                  <input type="hidden" class="form-control" id="edited_id" name="edit_id_view" value="" >
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="edited_task">Edit Task</label>
+                    <input type="text" class="form-control" name="edited_task" value="" >
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="edited_time">Edit Deadline</label>
+                    <input type="datetime-local" class="form-control" name="edited_time" value="">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+                <br>
+              </div>
             </div>
             <div class="col-lg-6">
               <div class="box box-green">
@@ -104,19 +99,17 @@
                   <i class="ion ion-clipboard"></i>
                   <h3 class="box-title">Completed</h3>
                   <div class="box-tools float-right">
-                    <ul class="pagination pagination-sm list-inline">
-                      <li class="page-item"><a href="#" class="page-link">&#xAB;</a>
-                      </li>
-                      <li class="page-item"><a href="#" class="page-link">&#xBB;</a>
-                      </li>
+                    <ul id="pagination_2" class="pagination pagination-sm list-inline">
+                      {% for i in page_range_2 %}
+                      <li class="todo_comp_page page-link" data-val="{{i}}">{{i}}</li>
+                    {% endfor %}
                     </ul>
                   </div>
                 </div>
                 <div class="box-body">
                   <ul class="todo-list ui-sortable" id="comp_task_list">
                    <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}' /> 
-                    {% for i in tasks %}
-                    {% if i.completed %}
+                    {% for i in first_page_2 %}
                     <li>
                       <span class="handle ui-sortable-handle">
                       <i class="fa fa-ellipsis-v"></i>
@@ -127,7 +120,6 @@
                         <button class="delete_comp_task btn btn-secondary" data-val= "{% url 'deletetask' id=i.id %}"><i class="fa fa-trash-o"></i></button>
                       </div>
                     </li>
-                    {% endif  %}
                     {% endfor %}
                   </ul>
                 </div>
@@ -143,8 +135,25 @@
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/index.js' %}"></script>
     <script>
-    var page_n=1;
-    //************ADD TASK FORM SUBMISSION****************//
+
+//****************EDIT TASK FORM ******************//
+$(document).ready(function() {
+  $('#task_div').on("click",'.edit_task_icon',function(){
+      var edit_id=$(this).data('val');
+      document.getElementById("edited_id").value = edit_id;
+      /*  var old_task    =$(this).parent().parent().document.getElementsByClassName("text");
+        console.log(old_task);
+        var old_deadline=$(this).parent().parent().find(".old_dead").html;
+        document.getElementById("edited_task").setAttribute("value", old_task);
+        document.getElementById("edited_time").setAttribute("value", old_deadline);*/
+      });
+});
+//***********************************************//
+
+    var page_n   = 1;
+    var page_n_2 = 1;
+
+//************ADD TASK FORM SUBMISSION****************//
 $(document).ready(function() {
       $("#addTask").submit(function (e) {
         e.preventDefault();
@@ -159,7 +168,7 @@ $(document).ready(function() {
                 var task = JSON.parse(response["task"]);
                 var id=JSON.parse(response["id"]);
                 var pages=JSON.parse(response["page_range"])
-                //$('#pagination_1').html('');
+                $('#pagination_1').html('');
                 for ( var i = 1; i <= pages; i++) {
                   $("#pagination_1").append(
                       `<li class="todo_page page-link" data-val="`+i+`">`+i+`</li>`
@@ -179,7 +188,8 @@ $(document).ready(function() {
                         </span>
                         <input type="checkbox" value="${id}" name="${fields["task"]}"> <span class="text">${fields["task"]||""}</span>
                         <small class="badge badge-danger"><i class="fa fa-clock-o"></i>${fields["deadline"]||""}</small>
-                        <div class="tools"> <i class="fa fa-edit"></i>
+                        <div class="tools"> 
+                        <button class="edit_task_icon btn btn-warning" data-toggle="collapse" data-target="#edit_task" data-val= "${id}"><i class="fa fa-edit"></i></button>
                           <button class="delete_task btn btn-danger" data-val="todo/deletetask/${id}"><i class="fa fa-trash-o"></i></button>
                         </div>
                       </li>`
@@ -196,9 +206,9 @@ $(document).ready(function() {
 
 //*****************DELETE TASK************************//
 $(document).ready(function() {
-  $(".delete_task btn btn-danger").click(function () {
+  $('#task_div').on("click",'.delete_task',function(){
            var endpoint = $(this).data('val');
-           var task = $(this).parent().parent();
+           var task     = $(this).parent().parent();
           $.ajax({
               url: endpoint,
               success: function (response) {
@@ -206,7 +216,7 @@ $(document).ready(function() {
                 $('#pagination_1').html('');
                 for ( var i = 1; i <= pages; i++) {
                   $("#pagination_1").append(
-                      `<li class="todo_page" data-val="`+i+`">`+i+`</li>`
+                      `<li class="todo_page page-link" data-val="`+i+`">`+i+`</li>`
                   );
                 }
                   task.remove();
@@ -222,12 +232,19 @@ $(document).ready(function() {
 //*****************DELETE COMPLETED TASK**************//
 
 $(document).ready(function() {
-  $(".delete_comp_task").click(function () {
+  $('#comp_task_list').on("click",'.delete_comp_task',function(event){
            var endpoint = $(this).data('val');
-           var task = $(this).parent().parent();
+           var task     = $(this).parent().parent();
           $.ajax({
               url: endpoint,
               success: function (response) {
+                var pages=JSON.parse(response["page_range_2"])
+                $('#pagination_2').html('');
+                for ( var i = 1; i <= pages; i++) {
+                  $("#pagination_2").append(
+                      `<li class="todo_comp_page page-link" data-val="`+i+`">`+i+`</li>`
+                  );
+                }
                   task.remove();
               },
               error: function (response) {
@@ -258,26 +275,36 @@ $(document).ready(function() {
         type: 'GET',
         data: {id},
         success:function(response){
-          var pages=JSON.parse(response["page_range"])
+          var pages  =JSON.parse(response["page_range"])
+          var pages_2=JSON.parse(response["page_range_2"])
           $('#pagination_1').html('');
           for ( var i = 1; i <= pages; i++) {
             $("#pagination_1").append(
                 `<li class="todo_page page-link" data-val="`+i+`">`+i+`</li>`
             );
           }
+          $('#pagination_2').html('');
+          for ( var i = 1; i <= pages_2; i++) {
+            $("#pagination_2").append(
+                `<li class="todo_comp_page page-link" data-val="`+i+`">`+i+`</li>`
+            );
+          }
           for(var i=0;i<id.length;i++){
               to_remove[i].remove();
-              var to_add=`<li>
-                      <span class="handle ui-sortable-handle">
-                      <i class="fa fa-ellipsis-v"></i>
-                      <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                       <span class="text">${task[i]}</span>
-                      <div class="tools">
-                        <button class="delete_comp_task btn btn-secondary" data-val= "todo/deletetask/${id[i]}"><i class="fa fa-trash-o"></i></button>
-                      </div>
-                    </li>`
-              $("#comp_task_list").append(to_add);
+              if(page_n_2>=pages_2)
+              {
+                var to_add=`<li>
+                        <span class="handle ui-sortable-handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                        </span>
+                        <span class="text">${task[i]}</span>
+                        <div class="tools">
+                          <button class="delete_comp_task btn btn-secondary" data-val= "todo/deletetask/${id[i]}"><i class="fa fa-trash-o"></i></button>
+                        </div>
+                      </li>`
+                $("#comp_task_list").append(to_add);
+              }
           }
         }
       })
@@ -301,7 +328,6 @@ $(document).ready(function() {
               },
               success: function (resp) {
                 $('#task_div').html('')
-                $('#pagination_1').html('')
                 $.each(resp.results, function(i, val) {
                   $('#task_div').append(
                     `<li>
@@ -311,7 +337,8 @@ $(document).ready(function() {
                         </span>
                         <input type="checkbox" value="${val.id}" name="${val.task}"> <span class="text">${val.task}</span>
                         <small class="badge badge-danger"><i class="fa fa-clock-o"></i>${val.deadline}</small>
-                        <div class="tools"> <i class="fa fa-edit"></i>
+                        <div class="tools"> 
+                        <button class="edit_task_icon btn btn-warning" data-toggle="collapse" data-target="#edit_task" data-val= "${val.id}"><i class="fa fa-edit"></i></button>
                           <button class="delete_task btn btn-danger" data-val="todo/deletetask/${val.id}"><i class="fa fa-trash-o"></i></button>
                         </div>
                       </li>`
@@ -324,6 +351,40 @@ $(document).ready(function() {
 });
 //**************************************************/
 
+//********************PAGINATION MARK COMPLETED********************/
+$(document).ready(function() {
+  $('#pagination_2').on("click",'.todo_comp_page',function(event){
+      event.preventDefault();
+      page_n_2 = $(this).data('val');
+          $.ajax({
+                  type: "POST",
+                  url: "{% url 'index' %}", // name of url
+                  data : {    
+                  page_n_2 : page_n_2, //page_number
+                  csrfmiddlewaretoken: '{{ csrf_token }}',
+              },
+              success: function (resp) {
+                $('#comp_task_list').html('')
+                $.each(resp.results_2, function(i, val) {
+                  $('#comp_task_list').append(
+                    `<li>
+                      <span class="handle ui-sortable-handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                      <span class="text">${val.task}</span>
+                      <div class="tools">
+                        <button class="delete_comp_task btn btn-secondary" data-val= "todo/deletetask/${val.id}"><i class="fa fa-trash-o"></i></button>
+                      </div>
+                    </li>`
+                  );
+                });
+              },
+          }); 
+
+  });    
+});
+//**************************************************/
 
 
     </script>
