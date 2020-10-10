@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %} 
+        <title>Your Events</title>
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/evt.css" type="text/css">
+{% endblock link %}
+{% block content %}
+	<div id="page">
+		<div id="body">
+			<div class="header">
+				<div>
+					<h1>YOUR EVENTS FEED</h1>
+					<a href="{% url 'addevent'  %}" >
+						<span>
+							<button type="button" class="btn btn-success mb-4">+ Add Event</button>
+						</span>
+					</a>
+					<div class=" article row align-items-center">
+					
+						
+					
+						<ul>
+							{% for i in evt %}
+							<li class="mb-3">
+								<h3>{{ i.eventname }} </h3>
+								<span>{{ i.creator }}</span>
+
+								<p>{{ i.description }}</p>
+								
+								<a type="button" class="btn btn-danger mr-5" href=" {% url 'deletevent' id=i.pk %} ">Delete Event</a>
+								<!--<a href="singlepost.html" class="more">Read More</a>-->
+								<a type="button" class="btn btn-secondary mr-5" href=" {% url 'readmore' id=i.pk %} ">Read More</a>
+								<a type="button" class="btn btn-primary " href=" {% url 'registerevent' id=i.pk %} ">Register For Event</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+{% endblock content %}
