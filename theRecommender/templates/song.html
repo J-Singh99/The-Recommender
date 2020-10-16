@@ -1,0 +1,282 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+  <title>The Song Recommender</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+  
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+  <link rel="stylesheet" href="{% static 'css/mediaelementplayer.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fl-bigmug-line.css' %}">
+  
+  
+  <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/style_song.css' %}">
+  
+{% endblock link %}
+{% block content %}
+  
+  
+  <div class="site-wrap">
+
+    <div class="site-navbar mt-4">
+      <div class="container py-1">
+        <div class="row align-items-center">
+          <div class="col-8 col-md-8 col-lg-4">
+            <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0"><strong>Dj<span class="text-primary">.</span></strong></a></h1>
+          </div>
+          <div class="col-4 col-md-4 col-lg-8">
+            <nav class="site-navigation text-right text-md-right" role="navigation">
+
+              <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+              
+
+            </nav>
+          </div>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-mobile-menu">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div> <!-- .site-mobile-menu -->
+  
+
+  <div class="site-hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <figure>
+          <img src="{% static 'images/dj.jpg' %} " alt="Image" class="img-fluid">
+        </figure>
+        <div class="col-lg-7">
+          <div class="heading mb-3">Your Music Fest</div>
+          <div class="w-75">
+            <p class="mb-5">Your taste, Your songs, Your love , just beside you!!</p>
+            <!--
+            <p><a href="{% static '#" class="btn btn-outline-primary">Join Us</a></p>
+          -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+          <div class="image" style="background-image: url({% static 'images/img_1.jpg' %});"></div>
+          <div class="text">
+
+            <h3 class="font-weight-light"><a href="#">Slamp Party</a></h3>
+            <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+            <p class="mb-4 text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
+
+            <div class="player">
+              <audio id="player2" preload="none" controls style="max-width: 100%">
+                <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
+              </audio>
+            </div>
+
+          </div>
+        </div>
+
+
+         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+          <div class="image" style="background-image: url({% static 'images/img_2.jpg' %});"></div>
+          <div class="text">
+
+            <h3 class="font-weight-light"><a href="#">Love For My City</a></h3>
+            <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+            <p class="mb-4 text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
+
+
+            <div class="player">
+              <audio id="player2" preload="none" controls style="max-width: 100%">
+                <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
+              </audio>
+            </div>
+
+          </div>
+        </div>
+
+
+         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+            <div class="image" style="background-image: url({% static 'images/img_3.jpg' %});"></div>
+            <div class="text">
+
+              <h3 class="font-weight-light"><a href="#">Music Night Fest</a></h3>
+              <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+              <p class="mb-4 text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
+
+              <div class="player">
+                <audio id="player2" preload="none" controls style="max-width: 100%">
+                  <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
+                </audio>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+            <div class="image" style="background-image: url({% static 'images/img_4.jpg' %});"></div>
+            <div class="text">
+
+              <h3 class="font-weight-light"><a href="#">Who's Got Your Love</a></h3>
+              <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+              <p class="mb-4 text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
+
+              <div class="player">
+                <audio id="player2" preload="none" controls style="max-width: 100%">
+                  <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
+                </audio>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+            <div class="image" style="background-image: url({% static 'images/img_1.jpg' %});"></div>
+            <div class="text">
+
+              <h3 class="font-weight-light"><a href="#">Don't Waste My Time</a></h3>
+              <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+              <p class="mb-4 text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
+
+              <div class="player">
+                <audio id="player2" preload="none" controls style="max-width: 100%">
+                  <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
+                </audio>
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+  
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="site-section-heading text-center mb-5 w-border col-md-6 mx-auto" data-aos="fade-up">
+          <h2 class="mb-5">Featured Events</h2>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="event">
+            <a href="#">
+              <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
+              <div class="date">
+                <span>
+                  <span>19</span>
+                  <span>Jun</span>
+                </span>
+              </div>
+            </a>
+            <h3><a href="#">Slamp Party</a></h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, veritatis a nobis qui tempore necessitatibus.</p>
+            <p><a href="#" class="more">Info</a></p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="event">
+            <a href="#">
+              <img src="{% static 'images/img_2.jpg' %} " alt="Image" class="img-fluid">
+              <div class="date">
+                <span>
+                  <span>24</span>
+                  <span>Jun</span>
+                </span>
+              </div>
+            </a>
+            <h3><a href="#">Love For My City</a></h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, veritatis a nobis qui tempore necessitatibus.</p>
+            <p><a href="#" class="more">Info</a></p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="event">
+            <a href="#">
+              <img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid">
+              <div class="date">
+                <span>
+                  <span>8</span>
+                  <span>Jul</span>
+                </span>
+              </div>
+            </a>
+            <h3><a href="#">Music Night Fest Party</a></h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, veritatis a nobis qui tempore necessitatibus.</p>
+            <p><a href="#" class="more">Info</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-section">
+    
+    <div class="container">
+      
+      
+    </div>
+  </div>
+
+  <section class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 video-wrap mb-5">
+          <img src="{% static 'images/img_4.jpg' %}" alt="Image placeholder" class="img-fluid">
+          <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo btn-video"><span class="icon-play"></span></a>
+        </div>
+        <div class="col-md-6 pl-md-5">
+          <div class="site-section-heading">
+            <h2>We Love Music</h2>            
+          </div>
+          <p class="lead">Join with us today</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam facere a excepturi quod impedit rerum ipsum totam incidunt, necessitatibus id veritatis maiores quos saepe dolore commodi magnam fugiat. Incidunt, omnis.</p>
+          <p class="mb-4">Nobis quae eaque facere architecto eligendi, voluptas quasi, blanditiis aperiam possimus inventore quis nam! Cupiditate necessitatibus, voluptatem excepturi placeat exercitationem quos vitae ut vero dolorem, provident sit odio porro facere.</p>
+          <p><a href="#" class="btn btn-primary">Join Us</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+</div>
+
+
+
+<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/mediaelement-and-player.min.js' %}"></script>
+<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+<script src="{% static 'js/circleaudioplayer.js' %}"></script>
+
+<script src="{% static 'js/main_song.js' %}"></script>
+
+{% endblock content %}

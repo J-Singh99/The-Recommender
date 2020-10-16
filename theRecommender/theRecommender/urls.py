@@ -22,5 +22,6 @@ urlpatterns = [
     path(r'', include("accounts.urls")),
     path(r'chat/', include("chatting.urls")),
     path(r'events/', include("events.urls")),
+    path(r'songs/', include("songs.urls")),
 
 ]

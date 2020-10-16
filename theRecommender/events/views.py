@@ -61,8 +61,9 @@ def add_event(request):
     else:
         messages.error(request, "Authetication required first!")
         #return redirect login
-    form = uploadeventform()
-    return render(request, 'upload_event.html', {'page':'events','form':form})
+    #form = uploadeventform()
+    #return render(request, 'upload_event.html', {'page':'events','form':form})
+    return redirect('events')
 '''
 def upload_announcement(request,pk):
     course = Courses.objects.get(pk=pk)

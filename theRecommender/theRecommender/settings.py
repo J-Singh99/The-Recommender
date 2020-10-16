@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'chatting',
-    'events'
+    'events',
+    'songs'
 ]
 
 MIDDLEWARE = [
