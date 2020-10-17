@@ -37,6 +37,7 @@ def index(request):
     page_range_2 = paginatorr_2.page_range
     result       = paginatorr.page(1)
     result_2     = paginatorr_2.page(1)
+    
     if request.method == 'POST':
         page_n    = request.POST.get('page_n', 1)
         page_n_2  = request.POST.get('page_n_2', 1)

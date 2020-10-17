@@ -80,14 +80,12 @@
   </div>
 
   <div class="container">
+    {% for i in final_song_list %}
         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
           <div class="image" style="background-image: url({% static 'images/img_1.jpg' %});"></div>
           <div class="text">
-
-            <h3 class="font-weight-light"><a href="#">Slamp Party</a></h3>
-            <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
-            <p class="mb-4 text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
-
+            <h3 class="font-weight-light"><a href="#">{{i.0}}</a></h3>
+            <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>{{i.1}} <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
             <div class="player">
               <audio id="player2" preload="none" controls style="max-width: 100%">
                 <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
@@ -96,9 +94,9 @@
 
           </div>
         </div>
+    {% endfor %}
 
-
-         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+       <!--  <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
           <div class="image" style="background-image: url({% static 'images/img_2.jpg' %});"></div>
           <div class="text">
 
@@ -165,7 +163,7 @@
                 </audio>
               </div>
             </div>
-          </div>
+          </div>-->
 
 
       </div>
