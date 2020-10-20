@@ -64,27 +64,7 @@ def add_event(request):
     #form = uploadeventform()
     #return render(request, 'upload_event.html', {'page':'events','form':form})
     return redirect('events')
-'''
-def upload_announcement(request,pk):
-    course = Courses.objects.get(pk=pk)
-    if not (request.user.is_authenticated and request.user.is_teacher):
-        messages.error(request, "Please login first(as a Teacher).")
-        return redirect('login')
-    elif course.teacher_id != request.user:
-        messages.error(request, "Sorry! This is not your course")
-        return redirect('login')
-    if request.method == 'POST':
-        form = UploadAnnouncementForm(request.POST, request.FILES)
-        if form.is_valid():
-            course = Courses.objects.get(pk=pk)
-            form.save(course)
-            messages.success(request, "Announcement Uploaded Successfully!!")
-            return redirect(reverse('course', kwargs={'pk':pk}))
-        else:
-            return render(request, 'upload_announcement.html', {'form':form})
-    form = UploadAnnouncementForm()
-    return render(request, 'upload_announcement.html', {'form':form})
-'''
+
 
 def test(request):
     context = {
