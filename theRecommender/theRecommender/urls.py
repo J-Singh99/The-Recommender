@@ -23,5 +23,5 @@ urlpatterns = [
     path(r'chat/', include("chatting.urls")),
     path(r'events/', include("events.urls")),
     path(r'songs/', include("songs.urls")),
-
+    path(r'movieRecom/', include("movieRecom.urls")), 
 ]

@@ -1,48 +1,6 @@
-$(document).ready(function() {
-  $(".delete_task").click(function () {
-           var endpoint = $(this).data('val');
-          //console
-          //var Data={'serializedData': $(this).serialize(),'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()};
-          //console.log(Data)
-          //console.log(JSON.stringify(Data));
-        // var serializedData = $(this).serialize();
-          $.ajax({
-              url: endpoint,
-            // data: serializedData,
-            //areyy ye data kyu htaa rha .. vo to bhejna hai..show to krna hai 
-            //jo delete hone k baad update tasks list hai vo show krne k liye i need to send data na 
-            //why you are sending data? Ab meko jb add krna tha tb to mene sirf vhi data send kr diya tha fine.. but ab jb me delete kr rhi ho
-              //data: JSON.stringify(Data),
-              //contentType: "application/json; charset=utf-8",
-              //dataType: "json",
-              success: function (response) {
-                // $("#addTask").trigger('reset');
-                  console.log(response['task']);
-                  /* var task = JSON.parse(response['task']);
-                  for ( var i = 0; i < task.length; i++) {
-                      latestTask = task[i];
-                      fields = latestTask['fields']
-                      $("#task_div").val(
-                        `
-                        <li>
-                        <span class="handle ui-sortable-handle">
-                          <i class="fa fa-ellipsis-v"></i>
-                          <i class="fa fa-ellipsis-v"></i>
-                        </span>
-                        <input type="checkbox" value="" name=""> <span class="text">${fields["task"]||""}</span>
-                        <small class="badge badge-danger"><i class="fa fa-clock-o"></i>${fields["deadline"]||""}</small>
-                        <div class="tools"> <i class="fa fa-edit"></i>
-                          <i class="fa fa-trash-o"></i>
-                        </div>
-                      </li>`
-                      )
-                  } */
-                
-              },
-              error: function (response) {
-              }
-          })
-      })
-
-  //****************************************************//
-});
+<div class="card-body">
+    <div class="embed-responsive embed-responsive-4by3">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bR8sE9ubyTI"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    https://www.youtube.com/embed/cMjv1ohdRBM
+</div>

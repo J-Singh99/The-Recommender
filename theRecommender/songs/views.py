@@ -34,7 +34,5 @@ def song(request):
 
 def relatedSongs(request):
     return render(request, 'song2.html')
-    
 
-    
      
