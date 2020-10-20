@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'accounts',
     'chatting',
     'events',
-    'songs'
+    'songs',
+    'movieRecom'
 ]
 
 MIDDLEWARE = [
