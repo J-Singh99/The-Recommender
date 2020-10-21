@@ -35,11 +35,12 @@
 		
 		body {background-color: white;}
 		
-		.main {
+		.mainrow {
 					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-items: stretch;
+					justify-content: flex-start;
 		}
 		
 		.item {
@@ -47,11 +48,23 @@
 			align-items: center;
 			justify-content: center;
 			border-style: round;
-			border-radius: 25px;
-			border: 2px solid #73AD21;
-			padding: 20px;
-			width: 200px;
-			height: 150px;
+			border-radius: 10px;
+			border: 2px solid #FFFFFF;
+			padding: 2px;
+			width: 180px;
+			height: 320px;
+		} 
+
+		.exp-item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-style: round;
+			border-radius: 10px;
+			border: 2px solid #000000;
+			padding: 2px;
+			width: 180px;
+			height: 320px;
 		} 
 	</style>
 
@@ -62,23 +75,50 @@
 
 {% block content %}
 	
-	<h1>Hello, let's try out this template.</h1>
+	<h1>Movie recomendations</h1>
 
 
-	<div class="main">
-		<img src="#" alt="SomeMovieTitle" type="button"  class="collapsible">
+	<div class="mainrow">
+
+
+		{% for movie in movieInfo %}
+	        
+			<img src="https://picsum.photos/180/320?random={{ movie.random }}" alt="SomeMovieTitle" type="button"  class="collapsible item">
+				<div class="content">
+				<div class="maincolumn">
+
+				<div class="exp-item">
+					<div class="">
+						<p>Name: <h3>{{ movie.name }}</h3></p>
+						<p>Director: {{ movie.Director }}</p>
+						<p>Rating: {{ movie.rating }}</p>
+						<p>Release Date: {{ movie.rel_date }}</p>
+						<p>Director: {{ movie.Director }}</p>
+						<p>Run Time: {{ movie.length }}</p>
+					</div>
+				</div>
+			</div>
+			</div>
+	    {% endfor %}
+	
+
+		<img src="https://picsum.photos/180/320?random=3" alt="SomeMovieTitle" type="button"  class="collapsible item">
 			<div class="content">
 			<div class="maincolumn">
 
-			<div class="item">
-				<div class="header">
-					<img src="#" alt="Movie Poster">
-					<h1> Movie Title</h1>
+			<div class="exp-item">
+				<div class="">
+					<p>movie detail 1</p>
+					<p>movie detail 2</p>
+					<p>movie detail 3</p>
 				</div>
 			</div>
 
 		</div>
 		</div>
+
+
+
 	</div>
 
 
