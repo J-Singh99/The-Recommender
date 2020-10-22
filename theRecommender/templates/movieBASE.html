@@ -9,6 +9,127 @@
 {% block style %}
 
 	<style>
+			
+		body {background-color: black;}
+
+		h1 { color:red }
+		h3 { color:white }
+
+		div.scrollmenu {
+		  display: flex;
+		  overflow-x: auto;
+		  background-color: #000000;
+		  white-space: nowrap;
+		  object-fit: contain;
+		}
+
+		.movieLinks {
+		  border-style: round;
+		  border-radius: 10px;
+		  border: 2px solid #000000;
+		  color: white;
+		  text-align: center;
+		  margin-right: 10px;
+		}
+
+		.movieCard
+		{
+			border-style: round;
+		  	border-radius: 10px;
+		  	border: 2px solid red;
+			width:200px; 
+			height:320px;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: red;
+		}
+
+		.scrollmenu::-webkit-scrollbar 
+		{
+			display: none;
+		}
+
+	</style>
+
+
+{% endblock style %}
+
+
+
+
+<!-- CONTENT BLOCK -->
+
+{% block content %}
+		
+	<h1>Movie Recomendations</h1>
+
+
+	<br><br>
+	<h3>Mystery</h3>
+
+	<div class="scrollmenu">
+		{% for movie in movieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
+				<h5>{{ movie.name }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+	<br>
+	<h3>Horror</h3>
+
+	<div class="scrollmenu">
+		{% for movie in movieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
+				<h5>{{ movie.name }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+	<br>
+	<h3>Happy</h3>
+
+	<div class="scrollmenu">
+		{% for movie in movieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
+				<h5>{{ movie.name }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+	<br>
+	<h3>Sad</h3>
+
+	<div class="scrollmenu">
+		{% for movie in movieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
+				<h5>{{ movie.name }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+{% endblock content %}
+
+<!--
+
+	<style>
+
+		.field{
+			color:red;
+		}
+		.val{
+			color:red;	
+		}
+
 		.collapsible {
 		  background-color: #eee;
 		  color: #444;
@@ -24,28 +145,6 @@
 		.active, .collapsible:hover {
 		  background-color: #ccc;
 		}
-		
-		body {background-color: black;}
-		
-		.mainrow {
-					display: flex;
-					flex-direction: row;
-					flex-wrap: wrap;
-					align-items: stretch;
-					justify-content: flex-start;
-		}
-		
-		.item {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			border-style: round;
-			border-radius: 5px;
-			border: 2px solid red;
-			padding: 0px;
-			width: 180px;
-			height: 320px;
-		} 
 
 		.exp-item {
 			display: flex;
@@ -74,68 +173,28 @@
      		background-color: #000000;
 		}
 
-		.field{
-			color:red;
+		.mainrow {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-items: stretch;
+					justify-content: flex-start;
 		}
-		.val{
-			color:red;	
-		}
-
-		div.scrollmenu {
-		  background-color: #333;
-		  overflow: auto;
-		  white-space: nowrap;
-		}
-
-		div.scrollmenu a {
-		  display: inline-block;
-		  color: white;
-		  text-align: center;
-		  padding: 14px;
-		  text-decoration: none;
-		}
-
-		div.scrollmenu a:hover {
-		  background-color: #777;
+		
+		.item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-style: round;
+			border-radius: 5px;
+			border: 2px solid red;
+			padding: 0px;
+			width: 180px;
+			height: 320px;
 		}
 
 	</style>
 
-
-{% endblock style %}
-
-
-
-
-<!-- CONTENT BLOCK -->
-
-{% block content %}
-	
-
-
-	<h1>Movie recomendations</h1>
-
-
-	<div class="scrollmenu">
-
-
-		{% for movie in movieInfo %}
-	        
-			<img src="https://picsum.photos/180/320?random={{ movie.random }}" alt="SomeMovieTitle" type="button"  class="collapsible item">
-			
-			<a href="#home">
-				<img src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}" style="width:180px;height:320px;">
-			</a>
-			<h5>{{ movie.name }}</h5>
-			
-	    {% endfor %}
-			
-  
-	</div>
-
-
-
-<!--
 	<div class="mainrow">
 
 
@@ -175,5 +234,3 @@
 		}
 	</script>
 -->
-
-{% endblock content %}
