@@ -24,16 +24,8 @@
 		.active, .collapsible:hover {
 		  background-color: #ccc;
 		}
-
 		
-		.content {
-		  padding: 0 18px;
-		  display: none;
-		  overflow: hidden;
-		  background-color: #f1f1f1;
-		}
-		
-		body {background-color: white;}
+		body {background-color: black;}
 		
 		.mainrow {
 					display: flex;
@@ -48,9 +40,9 @@
 			align-items: center;
 			justify-content: center;
 			border-style: round;
-			border-radius: 10px;
-			border: 2px solid #FFFFFF;
-			padding: 2px;
+			border-radius: 5px;
+			border: 2px solid red;
+			padding: 0px;
 			width: 180px;
 			height: 320px;
 		} 
@@ -65,7 +57,48 @@
 			padding: 2px;
 			width: 180px;
 			height: 320px;
-		} 
+		}
+
+		.content {
+			padding: 3px;
+			display: none;
+			overflow: hidden;
+
+			border-style: round;
+			border-radius: 10px;
+			border: 2px solid #000000;
+			padding: 10px;
+			width: 180px;
+			height: 320px;
+
+     		background-color: #000000;
+		}
+
+		.field{
+			color:red;
+		}
+		.val{
+			color:red;	
+		}
+
+		div.scrollmenu {
+		  background-color: #333;
+		  overflow: auto;
+		  white-space: nowrap;
+		}
+
+		div.scrollmenu a {
+		  display: inline-block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px;
+		  text-decoration: none;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: #777;
+		}
+
 	</style>
 
 
@@ -73,51 +106,53 @@
 
 
 
+
+<!-- CONTENT BLOCK -->
+
 {% block content %}
 	
+
+
 	<h1>Movie recomendations</h1>
 
 
+	<div class="scrollmenu">
+
+
+		{% for movie in movieInfo %}
+	        
+			<img src="https://picsum.photos/180/320?random={{ movie.random }}" alt="SomeMovieTitle" type="button"  class="collapsible item">
+			
+			<a href="#home">
+				<img src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}" style="width:180px;height:320px;">
+			</a>
+			<h5>{{ movie.name }}</h5>
+			
+	    {% endfor %}
+			
+  
+	</div>
+
+
+
+<!--
 	<div class="mainrow">
 
 
 		{% for movie in movieInfo %}
 	        
 			<img src="https://picsum.photos/180/320?random={{ movie.random }}" alt="SomeMovieTitle" type="button"  class="collapsible item">
-				<div class="content">
-				<div class="maincolumn">
-
-				<div class="exp-item">
-					<div class="">
-						<p>Name: <h3>{{ movie.name }}</h3></p>
-						<p>Director: {{ movie.Director }}</p>
-						<p>Rating: {{ movie.rating }}</p>
-						<p>Release Date: {{ movie.rel_date }}</p>
-						<p>Director: {{ movie.Director }}</p>
-						<p>Run Time: {{ movie.length }}</p>
-					</div>
-				</div>
-			</div>
-			</div>
-	    {% endfor %}
-	
-
-		<img src="https://picsum.photos/180/320?random=3" alt="SomeMovieTitle" type="button"  class="collapsible item">
+			
 			<div class="content">
-			<div class="maincolumn">
-
-			<div class="exp-item">
-				<div class="">
-					<p>movie detail 1</p>
-					<p>movie detail 2</p>
-					<p>movie detail 3</p>
-				</div>
+							<p class="field">Name: <h3>{{ movie.name }}</h3></p>
+							<p class="field">Director: <h6 class="val">{{ movie.Director }}</h6></p>
+							<p class="field">Rating: <h6 class="val">{{ movie.rating }}</h6></p>
+							<p class="field">Release Date: <h6 class="val">{{ movie.rel_date }}</h6></p>
+							<p class="field">Director: <h6 class="val">{{ movie.Director }}</h6></p>
+							<p class="field">Run Time: <h6 class="val">{{ movie.length }}</h6></p>
 			</div>
-
-		</div>
-		</div>
-
-
+	    
+	    {% endfor %}
 
 	</div>
 
@@ -139,5 +174,6 @@
 		  });
 		}
 	</script>
+-->
 
 {% endblock content %}
