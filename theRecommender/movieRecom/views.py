@@ -10,6 +10,9 @@ from django.views.generic import (
 )
 from django.contrib import messages
 
+
+
+
 movieInfo = [
     {'name':'Movie1', 'rel_date':'Today', 'rating':6, 'length':'120 mins', 'Director':'Tarantino', 'random':1},
     {'name':'Movie2', 'rel_date':'Yesterday', 'rating':4, 'length':'120 mins', 'Director':'Tarantino1', 'random':2},
@@ -25,13 +28,24 @@ movieInfo = [
     {'name':'Movie12', 'rel_date':'Tomorrow', 'rating':3, 'length':'120 mins', 'Director':'Tarantino11', 'random':12},
     {'name':'Movie13', 'rel_date':'Today', 'rating':8, 'length':'120 mins', 'Director':'Tarantino12', 'random':13}
 ]
-
 context = {
         'movieInfo': movieInfo
     }
 
+def main(request):
+    return render(request, 'movieHome.html', context = context)
+
+
+
+
+
+
+
+    
 def test(request):
 	return render(request, 'movieBASE.html', context = context)
+
+
 
 
 '''
