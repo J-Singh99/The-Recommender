@@ -70,7 +70,8 @@ def movie(request, id):
         data = json.loads(url.read().decode())
         print(type(data))
     similarmovies = getsimilarmovies(id)
-    return render('trying.html', {'similarmovies': similarmovies})
+    return render(request, 'movieINFO.html', context = movieCard)
+    #return render('trying.html', {'similarmovies': similarmovies})
     
 def searchmovie(request):
     apilink = 'https://api.themoviedb.org/3/search/movie?api_key=bc262bfb921192a51c8cf66453a8db3c&language=en-US&query={query}&page={page}&include_adult=false'
@@ -81,3 +82,16 @@ def searchmovie(request):
         data = json.loads(url.read().decode())
         print(type(data))
         redirect('movies')
+
+movieCard = {
+    "name":"Little Miss Sunshine",
+    "director":"Valerie Faris",
+    "imdb":"7.8",
+    "description":"A family decide to travel across the country when their daughter wants to participate in a beauty pageant, unaware of what the journey has in store for them.",
+    "rel_date":"26 July 2006",
+    "genre":"Adventure, Family, Relationships",
+    "run_time":"122 mins",
+    "cast":"Steve, Paul, Greg, Alan",
+    "Trailer":"https://www.youtube.com/watch?v=wvwVkllXT80",
+    'movieInfo': movieInfo
+    }
