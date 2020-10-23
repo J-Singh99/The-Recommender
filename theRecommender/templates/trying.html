@@ -4,3 +4,9 @@
     </div>
     https://www.youtube.com/embed/cMjv1ohdRBM
 </div>
+
+{% for key, value in data.items() %}
+    <tr>
+        <td> {{ key }}: </td> <td> {{ value }} </td>
+    </tr>
+{% endfor %}

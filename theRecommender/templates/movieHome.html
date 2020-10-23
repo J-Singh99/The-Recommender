@@ -49,7 +49,26 @@
 		{
 			display: none;
 		}
+		/* Styles for wrapping the search box */
 
+
+	/* Bootstrap 4 text input with search icon */
+
+	.has-search .form-control {
+		padding-left: 2.375rem;
+	}
+
+	.has-search .form-control-feedback {
+		position: absolute;
+		z-index: 2;
+		display: block;
+		width: 2.375rem;
+		height: 2.375rem;
+		line-height: 2.375rem;
+		text-align: center;
+		pointer-events: none;
+		color: #aaa;
+	}
 	</style>
 
 
@@ -61,32 +80,40 @@
 <!-- CONTENT BLOCK -->
 
 {% block content %}
-		
+<div>	
 	<h1>Movie Recomendations</h1>
 
-
+	<form action='{% url "searchmovie" %}' method='get' class="input-group w-50 mx-auto">
+		<input type="text" name='page' value='1' class="form-control" style="display:none;">
+		<input type="text" name='query' class="form-control" placeholder="Search movies..">
+		<div class="input-group-append">
+		<button class="btn btn-secondary" type="submit">
+			<i class="fa fa-search"></i>
+		</button>
+		</div>
+	</form>
 	<br><br>
-	<h3>Mystery</h3>
+	<h3>Anger</h3>
 
-	<div class="scrollmenu">
-		{% for movie in movieInfo %}
+	<div style="width:100%;%" class="scrollmenu">
+		{% for movie in angermovieInfo %}
 	        
-			<a class="movieLinks" href="#">
-				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
-				<h5>{{ movie.name }}</h5>
+			<a class="movieLinks" href="{% url 'movie' id=movie.id %}">
+				<img class="movieCard" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.name }}">
+				<h5>{{ movie.original_title }}</h5>
 			</a>
 	    {% endfor %}
 	</div>
 
 	<br>
-	<h3>Horror</h3>
+	<h3>Confuse</h3>
 
-	<div class="scrollmenu">
-		{% for movie in movieInfo %}
+	<div style="width:100%;%" class="scrollmenu">
+		{% for movie in confusingmovieInfo %}
 	        
 			<a class="movieLinks" href="#">
-				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
-				<h5>{{ movie.name }}</h5>
+				<img class="movieCard" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.name }}">
+				<h5>{{ movie.original_title }}</h5>
 			</a>
 	    {% endfor %}
 	</div>
@@ -116,7 +143,7 @@
 			</a>
 	    {% endfor %}
 	</div>
-
+</div>
 {% endblock content %}
 
 <!--
