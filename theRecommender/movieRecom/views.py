@@ -55,7 +55,7 @@ def movies(request):
 
 def getsimilarmovies(id):
     similar = "https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=bc262bfb921192a51c8cf66453a8db3c&language=en-US&page=1"
-    similarlink = apilink.format(tmdbmovieid = int(id))
+    similarlink = similar.format(movie_id = int(id))
     
     with urllib.request.urlopen(similarlink) as url:
         data = json.loads(url.read().decode())
@@ -65,13 +65,13 @@ def getsimilarmovies(id):
 def movie(request, id):
     apilink = "http://api.themoviedb.org/3/movie/{tmdbmovieid}?api_key=bc262bfb921192a51c8cf66453a8db3c&append_to_response=videos"
     link = apilink.format(tmdbmovieid = int(id))
-
+    moviedetail = dict()
     with urllib.request.urlopen(link) as url:
         data = json.loads(url.read().decode())
+        moviedetail = data
         print(type(data))
     similarmovies = getsimilarmovies(id)
-    return render(request, 'movieINFO.html', context = movieCard)
-    #return render('trying.html', {'similarmovies': similarmovies})
+    return render(request, 'movieINFO.html', {'moviedetail': moviedetail, 'similarmovies': similarmovies})
     
 def searchmovie(request):
     apilink = 'https://api.themoviedb.org/3/search/movie?api_key=bc262bfb921192a51c8cf66453a8db3c&language=en-US&query={query}&page={page}&include_adult=false'
@@ -93,5 +93,4 @@ movieCard = {
     "run_time":"122 mins",
     "cast":"Steve, Paul, Greg, Alan",
     "Trailer":"https://www.youtube.com/watch?v=wvwVkllXT80",
-    'movieInfo': movieInfo
     }

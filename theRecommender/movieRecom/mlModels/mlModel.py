@@ -5,7 +5,7 @@ import joblib
 
 class Anger:
     file = os.path.join(settings.BASE_DIR, 'movieRecom\mlModels\Anger.sav')
-    algo = joblib.load(file)
+    #algo = joblib.load(file)
     contains = "Family Musical Comedy"
 """   
 class Anticipation:

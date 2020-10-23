@@ -70,11 +70,11 @@
             <li class="header-menu">
               <span>Entertainment</span>
             </li>
-            <li>
-              <a href="#">Songs</a>
+            <li{% ifequal page "movies" %} class = "active" {% endifequal %}>
+              <a href="{% url 'movies' %}">Movies</a>
             </li>
             <li>
-              <a href="#">Videos</a>
+              <a href="#">Songs</a>
             </li>
             <li>
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">More</a>
@@ -125,12 +125,22 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">About</a>
                 </li>
+                {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                  </li>
+                  <li>
+                    <a class="nav-link text-warning" href="#">Hii {{ user.username }}..</a>
+                  </li>
+                {% else %}
+                
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Login</a>
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">SignUp</a>
+                  <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
                 </li>
+                {% endif %}
 
 
                 <li class="nav-item dropdown">

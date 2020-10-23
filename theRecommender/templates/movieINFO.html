@@ -92,7 +92,7 @@ html, body{
 
 
     .movie_card > .info_section > .movie_desc{
-      padding: 50px;
+      padding: 25px;
       height: 50%;
     }
 
@@ -194,7 +194,7 @@ html, body{
   }
 
 .bright_back{
-  background: url("https://occ-0-2433-448.1.nflxso.net/art/cd5c9/3e192edf2027c536e25bb5d3b6ac93ced77cd5c9.jpg");
+  background: url("https://image.tmdb.org/t/p/w500{{ moviedetail.poster_path }}");
 }
 
 	</style> 
@@ -206,20 +206,18 @@ html, body{
 
 <div class="movie_card" id="bright">
 	<div class="info_section">
-		
 		<div class="movie_header">
-	    	<img class="locandina" src="https://picsum.photos/100/120"/>
-	     	<h1>{{ name }}</h1>
-	     	<h4>{{ rel_date }}, {{ director }}</h4>
+	    	<img class="locandina" src="https://image.tmdb.org/t/p/w500{{ moviedetail.poster_path }}">
+	     	<h1>{{ moviedetail.title }}</h1>
+			<p> {{ moviedetail.tagline }} </p>
+	     	<h4>{{ moviedetail.release_date }},</h4>
 	     	<div>
-	     		<span class="minutes">{{ run_time }}</span>
-	     		<p class="type">{{ genre }}</p>	
+	     		<span class="minutes">{{ moviedetail.runtime }} min, {{ moviedetail.vote_average }}/10.0</span>
 	     	</div>
 	     	
 	    </div>
-	    
 		<div class="movie_desc">
-			<p class="text">{{ description }}</p>
+			<p class="text">{{ moviedetail.overview }}</p>
 		</div>
 	    
 		<div class="movie_social">
@@ -279,13 +277,12 @@ html, body{
 </style>
 
 	<h3>Watch simillar movies</h3>
-
 	<div class="scrollmenu">
-		{% for movie in movieInfo %}
+		{% for movie in similarmovies.results %}
 	        
-			<a class="movieLinks" href="#">
-				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
-				<h5>{{ movie.name }}</h5>
+			<a class="movieLinks" href="{% url 'movie' id=movie.id %}">
+				<img class="movieCard" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.name }}">
+				<h5>{{ movie.original_title }}</h5>
 			</a>
 	    {% endfor %}
 	</div>

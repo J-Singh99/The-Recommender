@@ -1,0 +1,49 @@
+{% load static %}
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form"  enctype="multipart/form-data" >
+                            {% csrf_token %}
+                            <p class="text-danger pl-4">{{ form.non_field_errors.as_text }}</p>
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                {{ form.username }}
+                            </div>
+                            <p class="text-danger pl-4">{{ form.username.errors.as_text }}</p>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                {{ form.email }}
+                            </div>
+                            <p class="text-danger pl-4">{{ form.email.errors.as_text }}</p>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                {{ form.password1 }}
+                            </div>
+                            <p class="text-danger pl-4">{{ form.password1.errors.as_text }}</p>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                {{ form.password2 }}
+                            </div>
+                            <p class="text-danger pl-4">{{ form.password2.errors.as_text }}</p>
+                            <div class="form-group" style="height: 40px;">
+                                <label class="btn btn-primary">
+                                    <i class="fa fa-image"></i> Upload Profile Picture
+                                    {{ form.image }}
+                                    <input type="file" style="display: none;" name="image">
+                                </label>
+                            </div>
+                            <p class="text-danger pl-4">{{ form.account_type.errors.as_text }}</p>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{% static 'images/signup-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{% url 'login' %}" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>

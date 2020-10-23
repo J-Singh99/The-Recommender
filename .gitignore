@@ -6,3 +6,6 @@ db.sqlite3
 theRecommender/db.sqlite3
 theRecommender/db.sqlite3
 theRecommender/db.sqlite3
+*.sav
+*.sqlite3
+*.png
