@@ -70,11 +70,10 @@
             <li class="header-menu">
               <span>Entertainment</span>
             </li>
-            <li{% ifequal page "movies" %} class = "active" {% endifequal %}>
+            <li {% ifequal page "movies" %} class = "active" {% endifequal %}>
               <a href="{% url 'movies' %}">Movies</a>
-            </li>
             <li>
-              <a href="#">Songs</a>
+              <a href="{% url 'song' %}">Songs</a>
             </li>
             <li>
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">More</a>
@@ -101,9 +100,6 @@
             </li>
           </ul>
           <div class="footer">
-            <p>
-              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
-            </p>
           </div>
         </div>
       </nav>
