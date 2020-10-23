@@ -92,7 +92,14 @@
             <div class="embed-responsive embed-responsive-4by3">
               <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bR8sE9ubyTI"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <h3><a href="#">{{i.0}}</a></h3>
+            <h3>
+              <form action="{% url 'song2' %}" method="get">
+                <input style="display:none" type="text" value="{{i.0}}" name="song_title">
+                <input style="display:none" type="text" value="{{i.1}}" name="artist">
+                <button type="submit">{{i.0}}</button>
+              </form>
+              <!--<a href="#">{{i.0}}</a>-->
+            </h3>
             <p>By {{i.1}}</p>
             <p><a href="#" class="more">Released by {{i.3}}</a></p>
           </div>
@@ -106,7 +113,14 @@
         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
           <div class="image" style="background-image: url({% static 'images/img_1.jpg' %});"></div>
           <div class="text">
-            <h3 class="font-weight-light"><a href="#">{{i.0}}</a></h3>
+            <h3 >
+              <form action="{% url 'song2' %}" method="get">
+                <input style="display:none" type="text" value="{{i.0}}" name="song_title">
+                <input style="display:none" type="text" value="{{i.1}}" name="artist">
+                <button type="submit">{{i.0}}</button>
+              </form>
+            <!--<a href="#">{{i.0}}</a>-->
+            </h3>
             <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>{{i.1}}</small></span></div>
             <div class="player">
             </div>

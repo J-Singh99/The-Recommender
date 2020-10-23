@@ -5,3 +5,4 @@ urlpatterns = [
     path('', views.song, name='song'),
     path('song2/', views.relatedSongs, name='song2')
 ]
+#<list:id
