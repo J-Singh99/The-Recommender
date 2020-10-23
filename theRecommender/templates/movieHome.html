@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+	<title>Movie Recommendations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/evt.css' %} " type="text/css">
+{% endblock link %}
+
+{% block style %}
+
+	<style>
+			
+		body {background-color: black;}
+
+		h1 { color:red }
+		h3 { color:white }
+
+		div.scrollmenu {
+		  display: flex;
+		  overflow-x: auto;
+		  background-color: #000000;
+		  white-space: nowrap;
+		  object-fit: contain;
+		}
+
+		.movieLinks {
+		  border-style: round;
+		  border-radius: 10px;
+		  border: 2px solid #000000;
+		  color: white;
+		  text-align: center;
+		  margin-right: 10px;
+		}
+
+		.movieCard
+		{
+			border-style: round;
+		  	border-radius: 10px;
+		  	border: 2px solid red;
+			width:200px; 
+			height:320px;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: red;
+		}
+
+		.scrollmenu::-webkit-scrollbar 
+		{
+			display: none;
+		}
+		/* Styles for wrapping the search box */
+
+
+	/* Bootstrap 4 text input with search icon */
+
+	.has-search .form-control {
+		padding-left: 2.375rem;
+	}
+
+	.has-search .form-control-feedback {
+		position: absolute;
+		z-index: 2;
+		display: block;
+		width: 2.375rem;
+		height: 2.375rem;
+		line-height: 2.375rem;
+		text-align: center;
+		pointer-events: none;
+		color: #aaa;
+	}
+	</style>
+
+
+{% endblock style %}
+
+
+
+
+<!-- CONTENT BLOCK -->
+
+{% block content %}
+<div>	
+	<h1>Movie Recomendations</h1>
+
+	<form action='{% url "searchmovie" %}' method='get' class="input-group w-50 mx-auto">
+		<input type="text" name='page' value='1' class="form-control" style="display:none;">
+		<input type="text" name='query' class="form-control" placeholder="Search movies..">
+		<div class="input-group-append">
+		<button class="btn btn-secondary" type="submit">
+			<i class="fa fa-search"></i>
+		</button>
+		</div>
+	</form>
+	<br><br>
+	<h3>Anger</h3>
+
+	<div style="width:100%;%" class="scrollmenu">
+		{% for movie in angermovieInfo %}
+	        
+			<a class="movieLinks" href="{% url 'movie' id=movie.id %}">
+				<img class="movieCard" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.name }}">
+				<h5>{{ movie.original_title }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+	<br>
+	<h3>Confuse</h3>
+
+	<div style="width:100%;%" class="scrollmenu">
+		{% for movie in confusingmovieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.name }}">
+				<h5>{{ movie.original_title }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+	<br>
+	<h3>Happy</h3>
+
+	<div class="scrollmenu">
+		{% for movie in movieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
+				<h5>{{ movie.name }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+	<br>
+	<h3>Sad</h3>
+
+	<div class="scrollmenu">
+		{% for movie in movieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
+				<h5>{{ movie.name }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+</div>
+{% endblock content %}
+
+<!--
+
+	<style>
+
+		.field{
+			color:red;
+		}
+		.val{
+			color:red;	
+		}
+
+		.collapsible {
+		  background-color: #eee;
+		  color: #444;
+		  cursor: pointer;
+		  padding: 18px;
+		  width: 100%;
+		  border: none;
+		  text-align: left;
+		  outline: none;
+		  font-size: 15px;
+		}
+
+		.active, .collapsible:hover {
+		  background-color: #ccc;
+		}
+
+		.exp-item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-style: round;
+			border-radius: 10px;
+			border: 2px solid #000000;
+			padding: 2px;
+			width: 180px;
+			height: 320px;
+		}
+
+		.content {
+			padding: 3px;
+			display: none;
+			overflow: hidden;
+
+			border-style: round;
+			border-radius: 10px;
+			border: 2px solid #000000;
+			padding: 10px;
+			width: 180px;
+			height: 320px;
+
+     		background-color: #000000;
+		}
+
+		.mainrow {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-items: stretch;
+					justify-content: flex-start;
+		}
+		
+		.item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-style: round;
+			border-radius: 5px;
+			border: 2px solid red;
+			padding: 0px;
+			width: 180px;
+			height: 320px;
+		}
+
+	</style>
+
+	<div class="mainrow">
+
+
+		{% for movie in movieInfo %}
+	        
+			<img src="https://picsum.photos/180/320?random={{ movie.random }}" alt="SomeMovieTitle" type="button"  class="collapsible item">
+			
+			<div class="content">
+							<p class="field">Name: <h3>{{ movie.name }}</h3></p>
+							<p class="field">Director: <h6 class="val">{{ movie.Director }}</h6></p>
+							<p class="field">Rating: <h6 class="val">{{ movie.rating }}</h6></p>
+							<p class="field">Release Date: <h6 class="val">{{ movie.rel_date }}</h6></p>
+							<p class="field">Director: <h6 class="val">{{ movie.Director }}</h6></p>
+							<p class="field">Run Time: <h6 class="val">{{ movie.length }}</h6></p>
+			</div>
+	    
+	    {% endfor %}
+
+	</div>
+
+
+
+	<script>
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+		  coll[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var content = this.nextElementSibling;
+		    if (content.style.display === "block") {
+		      content.style.display = "none";
+		    } else {
+		      content.style.display = "block";
+		    }
+		  });
+		}
+	</script>
+-->
