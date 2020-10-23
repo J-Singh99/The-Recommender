@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+	<title>Movie Recommendations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/evt.css' %} " type="text/css">
+{% endblock link %}
+
+{% block style %}
+
+	<style>
+			
+		body {background-color: black;}
+
+		h1 { color:red }
+		h3 { color:white }
+
+		div.scrollmenu {
+		  display: flex;
+		  overflow-x: auto;
+		  background-color: #000000;
+		  white-space: nowrap;
+		  object-fit: contain;
+		}
+
+		.movieLinks {
+		  border-style: round;
+		  border-radius: 10px;
+		  border: 2px solid #000000;
+		  color: white;
+		  text-align: center;
+		  margin-right: 10px;
+		}
+
+		.movieCard
+		{
+			border-style: round;
+		  	border-radius: 10px;
+		  	border: 2px solid red;
+			width:200px; 
+			height:320px;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: red;
+		}
+
+		.scrollmenu::-webkit-scrollbar 
+		{
+			display: none;
+		}
+
+	</style>
+
+
+{% endblock style %}
+
+
+
+
+<!-- CONTENT BLOCK -->
+
+{% block content %}
+		
+	<h1>Movie Recomendations</h1>
+
+
+	<br><br>
+	<h3>Mystery</h3>
+
+	<div class="scrollmenu">
+		{% for movie in movieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
+				<h5>{{ movie.name }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+	<br>
+	<h3>Horror</h3>
+
+	<div class="scrollmenu">
+		{% for movie in movieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
+				<h5>{{ movie.name }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+	<br>
+	<h3>Happy</h3>
+
+	<div class="scrollmenu">
+		{% for movie in movieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
+				<h5>{{ movie.name }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+	<br>
+	<h3>Sad</h3>
+
+	<div class="scrollmenu">
+		{% for movie in movieInfo %}
+	        
+			<a class="movieLinks" href="#">
+				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
+				<h5>{{ movie.name }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+{% endblock content %}
+
+<!--
+
+	<style>
+
+		.field{
+			color:red;
+		}
+		.val{
+			color:red;	
+		}
+
+		.collapsible {
+		  background-color: #eee;
+		  color: #444;
+		  cursor: pointer;
+		  padding: 18px;
+		  width: 100%;
+		  border: none;
+		  text-align: left;
+		  outline: none;
+		  font-size: 15px;
+		}
+
+		.active, .collapsible:hover {
+		  background-color: #ccc;
+		}
+
+		.exp-item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-style: round;
+			border-radius: 10px;
+			border: 2px solid #000000;
+			padding: 2px;
+			width: 180px;
+			height: 320px;
+		}
+
+		.content {
+			padding: 3px;
+			display: none;
+			overflow: hidden;
+
+			border-style: round;
+			border-radius: 10px;
+			border: 2px solid #000000;
+			padding: 10px;
+			width: 180px;
+			height: 320px;
+
+     		background-color: #000000;
+		}
+
+		.mainrow {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-items: stretch;
+					justify-content: flex-start;
+		}
+		
+		.item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-style: round;
+			border-radius: 5px;
+			border: 2px solid red;
+			padding: 0px;
+			width: 180px;
+			height: 320px;
+		}
+
+	</style>
+
+	<div class="mainrow">
+
+
+		{% for movie in movieInfo %}
+	        
+			<img src="https://picsum.photos/180/320?random={{ movie.random }}" alt="SomeMovieTitle" type="button"  class="collapsible item">
+			
+			<div class="content">
+							<p class="field">Name: <h3>{{ movie.name }}</h3></p>
+							<p class="field">Director: <h6 class="val">{{ movie.Director }}</h6></p>
+							<p class="field">Rating: <h6 class="val">{{ movie.rating }}</h6></p>
+							<p class="field">Release Date: <h6 class="val">{{ movie.rel_date }}</h6></p>
+							<p class="field">Director: <h6 class="val">{{ movie.Director }}</h6></p>
+							<p class="field">Run Time: <h6 class="val">{{ movie.length }}</h6></p>
+			</div>
+	    
+	    {% endfor %}
+
+	</div>
+
+
+
+	<script>
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+		  coll[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var content = this.nextElementSibling;
+		    if (content.style.display === "block") {
+		      content.style.display = "none";
+		    } else {
+		      content.style.display = "block";
+		    }
+		  });
+		}
+	</script>
+-->

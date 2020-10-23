@@ -11,6 +11,10 @@ from django.views.generic import (
 from django.contrib import messages
 
 
+def test(request):
+    return render(request, 'movieBASE.html', context = context)
+
+
 
 
 movieInfo = [
@@ -36,14 +40,9 @@ def main(request):
     return render(request, 'movieHome.html', context = context)
 
 
-
-
-
-
-
     
-def test(request):
-	return render(request, 'movieBASE.html', context = context)
+def movie(request):
+	return render(request, 'movieINFO.html',)
 
 
 
