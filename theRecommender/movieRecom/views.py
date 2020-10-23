@@ -32,17 +32,27 @@ movieInfo = [
     {'name':'Movie12', 'rel_date':'Tomorrow', 'rating':3, 'length':'120 mins', 'Director':'Tarantino11', 'random':12},
     {'name':'Movie13', 'rel_date':'Today', 'rating':8, 'length':'120 mins', 'Director':'Tarantino12', 'random':13}
 ]
-context = {
+context_1 = {
         'movieInfo': movieInfo
     }
 
 def main(request):
-    return render(request, 'movieHome.html', context = context)
+    return render(request, 'movieHome.html', context = context_1)
+
 
 
     
+movieCard = {
+    "name":"Little Miss Sunshine",
+    "director":"Valerie Faris",
+    "imdb":"7.8",
+    "rel_date":"26 July 2006",
+    "cast":"Steve, Paul, Greg, Alan",
+    "Trailer":"ENTER_LINK"
+    }
+
 def movie(request):
-	return render(request, 'movieINFO.html',)
+	return render(request, 'movieINFO.html', context = movieCard)
 
 
 
