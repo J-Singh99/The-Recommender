@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-<<<<<<< HEAD
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 
@@ -21,7 +20,7 @@ movieInfo = [
     {'name':'Movie13', 'rel_date':'Today', 'rating':8, 'length':'120 mins', 'Director':'Tarantino12', 'random':13}
 ]
 
-=======
+
 from .mlModels.MovieLens import MovieLens
 from .mlModels.mlModel import Anger#, Confusing, Anticipation, , Depressing, Sad, Excited, Happy, Inspring, Thrilling
 import urllib.request, json 
@@ -105,7 +104,6 @@ def searchmovie(request):
         print(type(data))
         redirect('movies')
 
->>>>>>> 6b765de3fc650bdd72c16ca2dbd98434a2e7367f
 movieCard = {
     "name":"Little Miss Sunshine",
     "director":"Valerie Faris",
@@ -117,7 +115,6 @@ movieCard = {
     "cast":"Steve, Paul, Greg, Alan",
     "trailer":"https://www.youtube.com/watch?v=wvwVkllXT80",
     'movieInfo': movieInfo
-<<<<<<< HEAD
     }
 
 context = {
@@ -140,6 +137,3 @@ def movie(request):
 
 def search(request):
     return render(request, 'movieSEARCH.html', context = movieCard)
-=======
-    }
->>>>>>> 6b765de3fc650bdd72c16ca2dbd98434a2e7367f
