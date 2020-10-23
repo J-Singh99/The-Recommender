@@ -2,13 +2,240 @@
 {% load static %}
 {% block link %}
 	<title>Movie Recommendations</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/evt.css' %} " type="text/css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 {% endblock link %}
 
-{% block style %}
-
+{% block style %}	
 	<style>
+
+
+html, body{
+  margin: 0;
+  background: black;
+  font-family: 'Montserrat', helvetica, arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.movie_card{
+  position: relative;
+  display: block;
+  width: 1000px;
+  height: 450px;
+  margin: 100px auto; 
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.4s;
+
+}
+
+ .movie_card > .blur_back{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    height: 100%; right: 0;
+    background-size: cover;
+    border-radius: 11px;
+  }
+
+
+.movie_card > .info_section
+  {
+    position: relative;
+    width: 100%;
+    height: 100%;
+	  background-blend-mode: multiply;
+    z-index: 2;
+    border-radius: 10px;
+  }
+
+ .movie_card > .info_section > .movie_header{
+      position: relative;
+      padding: 25px;
+      height: 40%;
+   
+    
+    }
+
+ .movie_card > .info_section > .movie_header > h1{
+        color: #fff;
+        font-weight: 400;
+      }
+
+      .movie_card > .info_section > .movie_header > h4{
+        color: #9ac7fa;
+        font-weight: 400;
+      }
+
+      .movie_card > .info_section > .movie_header > .minutes{
+        display: inline-block;
+        margin-top: 10px;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid rgba(255,255,255,0.13);
+      }
+
+      .movie_card > .info_section > .movie_header > .type{
+        display: inline-block;
+        color: #cee4fd;
+        margin-left: 10px;
+      }
+
+      .movie_card > .info_section > .movie_header > .locandina{
+        position: relative;
+        float: left;
+        margin-right: 20px;
+        height: 120px;
+        box-shadow: 0 0 20px -10px rgba(0,0,0,0.5);
+      }
+
+
+    .movie_card > .info_section > .movie_desc{
+      padding: 50px;
+      height: 50%;
+    }
+
+    .movie_card > .info_section > .movie_desc > .text{
+        color: #cfd6e1;
+      }
+
+	.movie_card > .info_section > .movie_social{
+      height: 10%;
+      padding-left: 15px;
+      padding-bottom: 20px;
+    }
+
+     .movie_card > .info_section > .movie_social > ul{
+        list-style: none;
+        padding: 0;
+      }
+
+      .movie_card > .info_section > .movie_social > ul > li{
+          display: inline-block;
+          color: rgba(255,255,255,0.4);
+          transition: color 0.3s;
+          transition-delay: 0.15s;
+          margin: 0 10px;
+        }
+
+        .movie_card > .info_section > .movie_social > ul > li:hover{
+            transition: color 0.3s;
+            color: rgba(255,255,255,0.8);
+          }
+
+         .movie_card > .info_section > .movie_social > ul > li > i{
+            font-size: 19px;
+            cursor: pointer;
+          }
+
+.movie_card:hover{
+    transform: scale(1.02);
+    transition: all 0.4s;
+  }
+
+
+@media screen and (min-width: 768px){
+.movie_header{
+    width: 60%;
+  }
+  
+  .movie_desc{
+    width: 50%;
+  }
+  
+  .info_section{
+    background: linear-gradient(to right, #0d0d0c 50%, transparent 100%);
+  }
+  
+  .blur_back{
+    width: 80%;
+    background-position: -100% 10% !important;  
+  }
+}
+
+
+
+@media screen and (max-width: 768px){
+	.movie_card{
+    width: 95%;
+    margin: 70px auto; 
+    min-height: 350px;
+    height: auto;
+  }
+  
+  .blur_back{
+    width: 100%;
+    background-position: 50% 50% !important;  
+  }
+  
+  .movie_header{
+    width: 100%;
+    margin-top: 85px;
+  }
+  
+  .movie_desc{
+    width: 100%;
+  }
+  
+  .info_section{
+    background: linear-gradient(to top, rgb(20, 20, 19) 50%, transparent 100%);
+    display: inline-grid;
+  }
+}
+
+
+
+#bright{
+  box-shadow: 0px 0px 150px -45px rgba(255, 51, 0, 0.5);
+}
+#bright:hover{
+    box-shadow: 0px 0px 120px -55px rgba(255, 51, 0, 0.5);
+  }
+
+.bright_back{
+  background: url("https://occ-0-2433-448.1.nflxso.net/art/cd5c9/3e192edf2027c536e25bb5d3b6ac93ced77cd5c9.jpg");
+}
+
+	</style> 
+{% endblock style %}
+
+<!-- CONTENT BLOCK -->
+
+{% block content %}
+
+<div class="movie_card" id="bright">
+	<div class="info_section">
+		
+		<div class="movie_header">
+	    	<img class="locandina" src="https://picsum.photos/100/120"/>
+	     	<h1>{{ name }}</h1>
+	     	<h4>{{ rel_date }}, {{ director }}</h4>
+	     	<div>
+	     		<span class="minutes">{{ run_time }}</span>
+	     		<p class="type">{{ genre }}</p>	
+	     	</div>
+	     	
+	    </div>
+	    
+		<div class="movie_desc">
+			<p class="text">{{ description }}</p>
+		</div>
+	    
+		<div class="movie_social">
+			<ul>
+				<li><a href="#"><i class="material-icons">play_circle_outline</i></a></li>
+	        	<li><a href="#"><i class="material-icons">rate_review</i></a></li>
+				<li><a href="#"><i class="material-icons">chat_bubble</i></a></li>
+	      </ul>
+	    </div>
+	  
+	</div>
+	<div class="blur_back bright_back"></div>
+</div>
+
+
+<style>
 			
 		body {background-color: black;}
 
@@ -49,24 +276,9 @@
 		{
 			display: none;
 		}
+</style>
 
-	</style>
-
-
-{% endblock style %}
-
-
-
-
-<!-- CONTENT BLOCK -->
-
-{% block content %}
-		
-	<h1>Movie Recomendations</h1>
-
-
-	<br><br>
-	<h3>Mystery</h3>
+	<h3>Watch simillar movies</h3>
 
 	<div class="scrollmenu">
 		{% for movie in movieInfo %}
@@ -78,44 +290,6 @@
 	    {% endfor %}
 	</div>
 
-	<br>
-	<h3>Horror</h3>
-
-	<div class="scrollmenu">
-		{% for movie in movieInfo %}
-	        
-			<a class="movieLinks" href="#">
-				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
-				<h5>{{ movie.name }}</h5>
-			</a>
-	    {% endfor %}
-	</div>
-
-	<br>
-	<h3>Happy</h3>
-
-	<div class="scrollmenu">
-		{% for movie in movieInfo %}
-	        
-			<a class="movieLinks" href="#">
-				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
-				<h5>{{ movie.name }}</h5>
-			</a>
-	    {% endfor %}
-	</div>
-
-	<br>
-	<h3>Sad</h3>
-
-	<div class="scrollmenu">
-		{% for movie in movieInfo %}
-	        
-			<a class="movieLinks" href="#">
-				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
-				<h5>{{ movie.name }}</h5>
-			</a>
-	    {% endfor %}
-	</div>
 
 {% endblock content %}
 
@@ -197,7 +371,17 @@
 
 	<div class="mainrow">
 
+<div class="movieTable">
+		<p>Name: {{ name }}</p>
+		<p>Director: {{ director }}</p>
+		<p>IMDB Rating: {{ imdb }}</p>
+		<p>Release Date: {{ rel_date }}</p>
+		<p>Cast: {{ cast }}</p>
+		<a href="{{ Trailer }}">Trailer</a>	
+	</div>
+    
 
+	<br><br><br><br>
 		{% for movie in movieInfo %}
 	        
 			<img src="https://picsum.photos/180/320?random={{ movie.random }}" alt="SomeMovieTitle" type="button"  class="collapsible item">

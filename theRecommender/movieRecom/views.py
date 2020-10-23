@@ -46,36 +46,14 @@ movieCard = {
     "name":"Little Miss Sunshine",
     "director":"Valerie Faris",
     "imdb":"7.8",
+    "description":"A family decide to travel across the country when their daughter wants to participate in a beauty pageant, unaware of what the journey has in store for them.",
     "rel_date":"26 July 2006",
+    "genre":"Adventure, Family, Relationships",
+    "run_time":"122 mins",
     "cast":"Steve, Paul, Greg, Alan",
-    "Trailer":"ENTER_LINK"
+    "Trailer":"https://www.youtube.com/watch?v=wvwVkllXT80",
+    'movieInfo': movieInfo
     }
 
 def movie(request):
 	return render(request, 'movieINFO.html', context = movieCard)
-
-
-
-
-'''
-def register_event(request,id):
-    if (request.user.is_authenticated):
-        obj=RegisteredEvents()
-        #evt=events.objects.get(id=id)
-        obj.event=events.objects.get(pk=id)
-        obj.user=request.user
-        obj.save()
-        messages.success(request, "Registered for event Successfully!!")
-    return redirect('events')
-
-def read_more(request,id):
-    if (request.user.is_authenticated):
-        evt = events.objects.get(pk=id)
-    return render(request, 'readmore.html',{'evt':evt})
-
-def event_feed(request):
-    if (request.user.is_authenticated):
-        #for now lets just render all events
-        evt = events.objects.all()
-        return render(request, 'event.html', {'page':'events','evt':evt})
-'''
