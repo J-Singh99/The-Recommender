@@ -1,20 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import (
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView
-)
 from django.contrib import messages
-
-
-def test(request):
-    return render(request, 'movieBASE.html', context = context)
-
-
 
 
 movieInfo = [
@@ -32,16 +19,7 @@ movieInfo = [
     {'name':'Movie12', 'rel_date':'Tomorrow', 'rating':3, 'length':'120 mins', 'Director':'Tarantino11', 'random':12},
     {'name':'Movie13', 'rel_date':'Today', 'rating':8, 'length':'120 mins', 'Director':'Tarantino12', 'random':13}
 ]
-context_1 = {
-        'movieInfo': movieInfo
-    }
 
-def main(request):
-    return render(request, 'movieHome.html', context = context_1)
-
-
-
-    
 movieCard = {
     "name":"Little Miss Sunshine",
     "director":"Valerie Faris",
@@ -51,9 +29,27 @@ movieCard = {
     "genre":"Adventure, Family, Relationships",
     "run_time":"122 mins",
     "cast":"Steve, Paul, Greg, Alan",
-    "Trailer":"https://www.youtube.com/watch?v=wvwVkllXT80",
+    "trailer":"https://www.youtube.com/watch?v=wvwVkllXT80",
     'movieInfo': movieInfo
     }
 
+context = {
+        'movieInfo': movieInfo
+    }
+
+
+
+
+def test(request):
+    return render(request, 'movieBASE.html', context = context)
+
+
+
+def main(request):
+    return render(request, 'movieHome.html', context = context)
+
 def movie(request):
 	return render(request, 'movieINFO.html', context = movieCard)
+
+def search(request):
+    return render(request, 'movieSEARCH.html', context = movieCard)
