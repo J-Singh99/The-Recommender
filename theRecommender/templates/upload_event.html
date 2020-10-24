@@ -16,9 +16,12 @@
 						+Add A New Event
 					</span>
 
-					<div class="wrap-input2 validate-input" data-validate="Name is required">
-						{{ form.eventname }} 
-						<span class="focus-input2" data-placeholder="EVENT NAME"></span>
+					<div class="row form-group">
+						<div class="col-md-12">
+							<label class="text-black" for="title">Event name</label> 
+							{{ form.eventname }} 
+						</div>
+						<p class="text-danger pl-4">{{ form.group_name.errors.as_text }}</p>
 					</div>
 					
 					<div class="form-group row">
@@ -41,15 +44,20 @@
 					  </div>
 					</div>
 
-					<div class="wrap-input2 validate-input" data-validate="VENUE is required">
-						{{ form.venue }} 
-						<span class="focus-input2" data-placeholder="EVENT VENUE"></span>
+					<div class="row form-group">
+						<div class="col-md-12">
+							<label class="text-black" for="title">Venue</label> 
+							{{ form.venue }} 
+						</div>
+						<p class="text-danger pl-4">{{ form.group_name.errors.as_text }}</p>
 					</div>
 
-					<div class="wrap-input2 validate-input" data-validate = "DESCRIPTION is required">
-						{{ form.description }} 
-
-						<span class="focus-input2" data-placeholder="EVENT DESCRIPTION"></span>
+					<div class="row form-group">
+						<div class="col-md-12">
+							<label class="text-black" for="message">Description </label> 
+							{{ form.description }} 
+						</div>
+						<p class="text-danger pl-4">{{ form.description.errors.as_text }}</p>
 					</div>
 
 					<div class="container-contact2-form-btn">

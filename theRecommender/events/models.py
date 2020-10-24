@@ -17,12 +17,13 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
-
+#tag is actually name 
 class club(models.Model):
-    tag = models.CharField(max_length=3, unique=True,default="DEF")
+    name = models.CharField(max_length=100, verbose_name='name',  unique=True,default="DEF")
+    description = models.TextField()
     #uni = models.ForeignKey(User.university, verbose_name='university', on_delete= models.CASCADE)
     def __str__(self):
-        return self.tag
+        return self.name
 
 class events(models.Model):
     creator = models.ForeignKey(User, on_delete= models.CASCADE)

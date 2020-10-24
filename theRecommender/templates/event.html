@@ -16,6 +16,11 @@
 							<button type="button" class="btn btn-success mb-4">+ Add Event</button>
 						</span>
 					</a>
+					<a href="{% url 'addclub'  %}" >
+						<span>
+							<button type="button" class="btn btn-info mb-4">+ Add Clubs</button>
+						</span>
+					</a>
 					<div class=" article row align-items-center">
 					
 						
@@ -27,8 +32,10 @@
 								<span>{{ i.creator }}</span>
 
 								<p>{{ i.description }}</p>
-								
+
+								{% if user.pk == i.creator.pk %}
 								<a type="button" class="btn btn-danger mr-5" href=" {% url 'deletevent' id=i.pk %} ">Delete Event</a>
+								{% endif %}
 								<!--<a href="singlepost.html" class="more">Read More</a>-->
 								<a type="button" class="btn btn-secondary mr-5" href=" {% url 'readmore' id=i.pk %} ">Read More</a>
 								<a type="button" class="btn btn-primary " href=" {% url 'registerevent' id=i.pk %} ">Register For Event</a>

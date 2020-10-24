@@ -9,16 +9,33 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib import messages
-from .models import Post,events,club,RegisteredEvents
-from .forms import uploadeventform
+from .models import Post,events,club,RegisteredEvents,AdminOf
+from .forms import uploadeventform,uploadclubform
 
 
 #from .models import Post
-def delete_event(request,id):
+def add_club(request):
     if (request.user.is_authenticated):
+        if request.method == 'POST':
+            form = uploadclubform(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "CLUB Uploaded Successfully!!")
+        else:
+            form = uploadclubform()
+            return render(request, 'addclub.html', {'page':'events','form':form})
+    else:
+        messages.error(request, "Authetication required first!")
+        
+    return redirect('events')
+
+def delete_event(request,id):
+    evt = events.objects.get(pk=id)
+    if (request.user.is_authenticated and request.user==evt.creator ):
         events.objects.get(pk=id).delete()
         messages.success(request, "Deleted Event Successfully!!")
-    #return render(request, 'event.html' , {'page':'events'})
+    else:
+        messages.success(request, "YOU ARE NOT AUTHORISED TO DELETE THIS EVENT BECAUSE YOU ARE NOT ADMIN!!")
     return redirect('events')
 
 def register_event(request,id):
@@ -46,23 +63,15 @@ def add_event(request):
     if (request.user.is_authenticated):
         if request.method == 'POST':
             form = uploadeventform(request.POST)
-            #print(form)
             if form.is_valid():
-                #print("u suck")
                 clubtag = form.cleaned_data['tag']
                 form.save(request.user,clubtag)
-                #print("done")
                 messages.success(request, "Event Uploaded Successfully!!")
-                #return render(request, 'upload_event.html', {'page':'events','form':form})
         else:
             form = uploadeventform()
-            #print(form)
             return render(request, 'upload_event.html', {'page':'events','form':form})
     else:
         messages.error(request, "Authetication required first!")
-        #return redirect login
-    #form = uploadeventform()
-    #return render(request, 'upload_event.html', {'page':'events','form':form})
     return redirect('events')
 
 

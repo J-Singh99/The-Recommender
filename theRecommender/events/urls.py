@@ -11,6 +11,7 @@ from . import views
 urlpatterns = [
     path('', views.event_feed, name='events'),
     path('addevent/', views.add_event, name='addevent'),
+    path('addclub/', views.add_club, name='addclub'),
     re_path('deletevent/(?P<id>\d+)/$', views.delete_event, name='deletevent'),
     re_path('registerevent/(?P<id>\d+)/$', views.register_event, name='registerevent'),
     #re_path(r'^(?P<pk>\d+)/showattendance/$', views.showattendance, name='showattendance')
