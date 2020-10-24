@@ -30,7 +30,7 @@
   <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar">
         <div class="p-4">
-          <a href="#" class="img logo rounded-circle mb-4" style="background-image: url({% static 'images/logo.jpg' %});"></a>
+          <a href="#" class="img logo rounded-circle mb-4" style="background-image: url({{ user.image.url }});"></a>
           <ul class="list-unstyled components mb-5">
             <li class="header-menu">
               <span>General</span>
@@ -116,7 +116,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home</a>
+                  <a class="nav-link" href="{% url 'index' %}">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">About</a>

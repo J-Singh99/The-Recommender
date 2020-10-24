@@ -5,11 +5,11 @@
 <div class="row heading">
           <div class="col-md-2 col-2 heading-avatar">
             <div class="heading-avatar-icon">
-              <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+              <img src={{ send_to.image.url }}>
             </div>
           </div>
           <div class="col-md-9 col-9 heading-name"> 
-            <a class="heading-name-meta">John Doe</a>
+            <a class="heading-name-meta">{{ send_to.username }}</a>
             <span class="heading-online">Online</span>
           </div>
           <div class="col-md-1 col-1"> <i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
@@ -40,36 +40,7 @@
               </div>
             </div>
           {% endfor %}
-          <div class="row message-body">
-            <div class="col-md-12 message-main-receiver">
-              <div class="receiver">
-                <div class="message-text">Hi, what are you doing?!</div>
-                <span class="message-time float-right">
-                Sun
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="row message-body">
-            <div class="col-md-12 message-main-receiver">
-              <div class="receiver">
-                <div class="message-text">Hi, what are you doing?!</div>
-                <span class="message-time float-right">
-                Sun
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="row message-body">
-            <div class="col-md-12 message-main-sender">
-              <div class="sender">
-                <div class="message-text">I am doing nothing man!</div>
-                <span class="message-time float-right">
-                Sun
-                </span>
-              </div>
-            </div>
-          </div>
+
         </div>
         <div class="row reply">
           <div class="col-md-10 col-10 reply-main">

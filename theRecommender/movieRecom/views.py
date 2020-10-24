@@ -15,7 +15,7 @@ def movies(request):
     pastwatch   = getmovies(pastwatch)[:10]
     #angermovies  = anger(user_items, request.user.id)
     #confusingmovies = confusing(user_items, request.user.id)
-    return render(request, 'movieHome.html', {'allmovies': all_movies, 'pastwatched': pastwatch, 'angermovieInfo':'angermovies', 'confusingmovieInfo':'confusingmovies'})
+    return render(request, 'movieHome.html', {'page':'movies', 'allmovies': all_movies, 'pastwatched': pastwatch, 'angermovieInfo':'angermovies', 'confusingmovieInfo':'confusingmovies'})
 
 def getsimilarmovies(id):
     similar = "https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=bc262bfb921192a51c8cf66453a8db3c&language=en-US&page=1"
@@ -41,7 +41,7 @@ def movie(request, id):
         moviedetail = data
         print(type(data))
     similarmovies = getsimilarmovies(id)
-    return render(request, 'movieINFO.html', {'moviedetail': moviedetail, 'similarmovies': similarmovies})
+    return render(request, 'movieINFO.html', {'page':'movies','moviedetail': moviedetail, 'similarmovies': similarmovies})
     
 def searchmovie(request):
     apilink = 'https://api.themoviedb.org/3/search/movie?api_key=bc262bfb921192a51c8cf66453a8db3c&language=en-US&query={query}&page={page}&include_adult=false'
@@ -52,4 +52,4 @@ def searchmovie(request):
     with urllib.request.urlopen(link) as url:
         data = json.loads(url.read().decode())
         print(type(data))
-        return render(request, 'movieSEARCH.html', {'movies': data})
+        return render(request, 'movieSEARCH.html', {'page':'movies', 'movies': data})

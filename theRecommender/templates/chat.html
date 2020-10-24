@@ -12,7 +12,7 @@
           <div class="row heading">
             <div class="col-md-8 col-8 heading-avatar">
               <div class="heading-avatar-icon">
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                <img src="{{ user.image.url }}">
               </div>
             </div>
             <div class="col-md-2 col-2 heading-compose  float-right"> <i class="fa fa-comments fa-2x  float-right" aria-hidden="true"></i>
@@ -33,15 +33,19 @@
             {% ifnotequal user.username i.sender.username %} 
             {% with sender=i.sender %}
             <a class="row sideBar-body col-12" href = "{% url 'personal_chat' pk=sender.pk %}">
+            <div class="col-md-3 col-3 sideBar-avatar">
+                <div class="avatar-icon">
+                  <img src={{ sender.image.url }}>
             {% endwith %}  
             {% else %} 
             {% with sender=i.receiver %}
             <a class="row sideBar-body col-12" href = "{% url 'personal_chat' pk=sender.pk %}">
+            <div class="col-md-3 col-3 sideBar-avatar">
+                <div class="avatar-icon">
+                  <img src={{ sender.image.url }}>
               {% endwith %}
               {% endifnotequal %}              
-              <div class="col-md-3 col-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+              
                 </div>
               </div>
               <div class="col-md-9 col-9 sideBar-main">
@@ -57,10 +61,10 @@
             </a>
             {% endfor %}
             {% for i in grouplist %}
-            <a class="row sideBar-body col-12"  href = "{% url 'grp_chat' pk=i.pk %}">
+            <a class="row sideBar-body col-12"  href = "{% url 'grp_chat' pk=i.group.pk %}">
               <div class="col-md-3 col-3 sideBar-avatar">
                 <div class="avatar-icon">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                  <img src={{ i.group.image.url }}>
                 </div>
               </div>
               <div class="col-md-9 col-9 sideBar-main">
