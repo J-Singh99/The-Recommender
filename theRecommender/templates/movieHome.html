@@ -93,10 +93,22 @@
 		</div>
 	</form>
 	<br><br>
-	<h3>Anger</h3>
+	<h3>past watched</h3>
 
 	<div style="width:100%;%" class="scrollmenu">
-		{% for movie in angermovieInfo %}
+		{% for movie in pastwatched %}
+	        
+			<a class="movieLinks" href="{% url 'movie' id=movie.id %}">
+				<img class="movieCard" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.name }}">
+				<h5>{{ movie.original_title }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+	<br>
+	<h3>Genral </h3>
+	<div style="width:100%;%" class="scrollmenu">
+		{% for movie in allmovies %}
 	        
 			<a class="movieLinks" href="{% url 'movie' id=movie.id %}">
 				<img class="movieCard" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.name }}">
@@ -119,10 +131,10 @@
 	</div>
 
 	<br>
-	<h3>Happy</h3>
+	<h3>Anger</h3>
 
 	<div class="scrollmenu">
-		{% for movie in movieInfo %}
+		{% for movie in angermovieInfo %}
 	        
 			<a class="movieLinks" href="#">
 				<img class="movieCard" src="https://picsum.photos/180/320?random={{ movie.random }}" alt="{{ movie.name }}">
