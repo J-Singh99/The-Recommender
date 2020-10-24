@@ -219,10 +219,11 @@ html, body{
 		<div class="movie_desc">
 			<p class="text">{{ moviedetail.overview }}</p>
 		</div>
-	    
+    
+			
 		<div class="movie_social">
 			<ul>
-				<li><a href="{{ trailer  }}"><i class="material-icons">play_circle_outline</i></a></li>
+				<li><a href="#myModal{{ moviedetail.id }}" class="btn btn-primary btn-lg" data-toggle="modal"><i class="material-icons">play_circle_outline</i></a></li>
 	        	<li><a href="#"><i class="material-icons">rate_review</i></a></li>
 				<li><a href="#"><i class="material-icons">chat_bubble</i></a></li>
 	      </ul>
@@ -232,6 +233,21 @@ html, body{
 	<div class="blur_back bright_back"></div>
 </div>
 
+<div id="myModal{{ moviedetail.id }}" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">{{ moviedetail.videos.results.0.name }}</h5>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+						<div class="embed-responsive embed-responsive-16by9">
+							<iframe id="cartoonVideo" class="embed-responsive-item" width="560" height="315" src="//www.youtube.com/embed/{{ moviedetail.videos.results.0.key }}" allowfullscreen></iframe>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 <style>
 			
