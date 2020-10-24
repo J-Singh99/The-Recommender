@@ -10,12 +10,13 @@ from surprise import Reader
 from collections import defaultdict
 import numpy as np
 
+
 class MovieLens:
 
     movieID_to_name = {}
     name_to_movieID = {}
-    ratingsPath = os.path.join(settings.BASE_DIR, 'movieRecom/mlModels/ml-latest-small/ratings.csv')
-    moviesPath = os.path.join(settings.BASE_DIR, 'movieRecom/mlModels/ml-latest-small/movies.csv')
+    ratingsPath = os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), 'ml-latest-small/ratings.csv')
+    moviesPath = os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), 'ml-latest-small/movies.csv')
 
     def __init__(self, contain=""):
 

@@ -2,12 +2,15 @@ import os
 from django.conf import settings
 import joblib
 
-
+"""   
+class All:
+    file = os.path.join(settings.BASE_DIR, 'movieRecom\mlModels\\all.sav')
+    algo = joblib.load(file)
+    contains = ""
 class Anger:
     file = os.path.join(settings.BASE_DIR, 'movieRecom\mlModels\Anger.sav')
-    #algo = joblib.load(file)
+    algo = joblib.load(file)
     contains = "Family Musical Comedy"
-"""   
 class Anticipation:
     file = os.path.join(settings.BASE_DIR, 'movieRecom\mlModels\Anticipation.sav')
     algo = joblib.load(file)
@@ -42,9 +45,11 @@ class Inspring:
     file = os.path.join(settings.BASE_DIR, 'movieRecom\mlModels\Inspring.sav')
     algo = joblib.load(file)
     contains = "Biography Documentary Sport War"
-
+"""
 class Thrilling:
     file = os.path.join(settings.BASE_DIR, 'movieRecom\mlModels\Thrilling.sav')
     algo = joblib.load(file)
     contains = "Horror Mystery"
-"""
+
+
+

@@ -1,12 +1,11 @@
-from MovieLens import MovieLens
 from surprise import SVD
 from surprise import NormalPredictor
 from Evaluator import Evaluator
 from surprise.model_selection import GridSearchCV
-
 import random
+import os
 import numpy as np
-
+from MovieLens import MovieLens
 
 def LoadMovieLensData(contains=""):
     ml = MovieLens(contains)
@@ -18,7 +17,7 @@ def LoadMovieLensData(contains=""):
 np.random.seed(0)
 random.seed(0)
 moods = {
-        #  "all": "",
+         "all": "",
         #  "sad": "Drama",
         #  "happy": "Action Comedy Musical",
         #  "Excited": "Action Romance",
@@ -27,10 +26,11 @@ moods = {
         #  'Depressing': "Drama Biography",
         #  "Confusing": 'Thriller Fantasy Crime',
         #  "Inspring": "Biography Documentary Sport War",
-         "Thrilling": "Horror Mystery"
+        # "Thrilling": "Horror Mystery"
          }
 
 for mood, c in moods.items():
+    print(mood, c)
     # Load up common data set for the recommender algorithms
     (ml, evaluationData, rankings) = LoadMovieLensData(c)
     print("Searching for best parameters...")

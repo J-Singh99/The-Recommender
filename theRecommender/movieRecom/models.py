@@ -9,6 +9,9 @@ class links(models.Model):
     tmdbid   =   models.IntegerField()
 
 class Ratings(models.Model):
+    class Meta:
+        unique_together = (('user', 'movieid'),)
     user     =   models.ForeignKey(User, verbose_name='user', on_delete= models.CASCADE)
-    movieid  =   models.ImageField()
-    ratings  =   models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(5.0)], default=None)
+    movieid  =   models.IntegerField()
+    ratings  =   models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(5.0)], null=True, default=None)
+    timestamp   = models.DateTimeField(auto_now_add=True)
