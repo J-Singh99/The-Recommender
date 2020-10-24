@@ -1,0 +1,433 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+	<title>Movie Recommendations</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock link %}
+
+{% block style %}	
+	<style>
+
+
+html, body{
+  margin: 0;
+  background: black;
+  font-family: 'Montserrat', helvetica, arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.movie_card{
+  position: relative;
+  display: block;
+  width: 1000px;
+  height: 450px;
+  margin: 100px auto; 
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.4s;
+
+}
+
+ .movie_card > .blur_back{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    height: 100%; right: 0;
+    background-size: cover;
+    border-radius: 11px;
+  }
+
+
+.movie_card > .info_section
+  {
+    position: relative;
+    width: 100%;
+    height: 100%;
+	  background-blend-mode: multiply;
+    z-index: 2;
+    border-radius: 10px;
+  }
+
+ .movie_card > .info_section > .movie_header{
+      position: relative;
+      padding: 25px;
+      height: 40%;
+   
+    
+    }
+
+ .movie_card > .info_section > .movie_header > h1{
+        color: #fff;
+        font-weight: 400;
+      }
+
+      .movie_card > .info_section > .movie_header > h4{
+        color: #9ac7fa;
+        font-weight: 400;
+      }
+
+      .movie_card > .info_section > .movie_header > .minutes{
+        display: inline-block;
+        margin-top: 10px;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid rgba(255,255,255,0.13);
+      }
+
+      .movie_card > .info_section > .movie_header > .type{
+        display: inline-block;
+        color: #cee4fd;
+        margin-left: 10px;
+      }
+
+      .movie_card > .info_section > .movie_header > .locandina{
+        position: relative;
+        float: left;
+        margin-right: 20px;
+        height: 120px;
+        box-shadow: 0 0 20px -10px rgba(0,0,0,0.5);
+      }
+
+
+    .movie_card > .info_section > .movie_desc{
+      padding: 25px;
+      height: 50%;
+    }
+
+    .movie_card > .info_section > .movie_desc > .text{
+        color: #cfd6e1;
+      }
+
+	.movie_card > .info_section > .movie_social{
+      height: 10%;
+      padding-left: 15px;
+      padding-bottom: 20px;
+    }
+
+     .movie_card > .info_section > .movie_social > ul{
+        list-style: none;
+        padding: 0;
+      }
+
+      .movie_card > .info_section > .movie_social > ul > li{
+          display: inline-block;
+          color: rgba(255,255,255,0.4);
+          transition: color 0.3s;
+          transition-delay: 0.15s;
+          margin: 0 10px;
+        }
+
+        .movie_card > .info_section > .movie_social > ul > li:hover{
+            transition: color 0.3s;
+            color: rgba(255,255,255,0.8);
+          }
+
+         .movie_card > .info_section > .movie_social > ul > li > i{
+            font-size: 19px;
+            cursor: pointer;
+          }
+
+.movie_card:hover{
+    transform: scale(1.02);
+    transition: all 0.4s;
+  }
+
+
+@media screen and (min-width: 768px){
+.movie_header{
+    width: 60%;
+  }
+  
+  .movie_desc{
+    width: 50%;
+  }
+  
+  .info_section{
+    background: linear-gradient(to right, #0d0d0c 50%, transparent 100%);
+  }
+  
+  .blur_back{
+    width: 80%;
+    background-position: -100% 10% !important;  
+  }
+}
+
+
+
+@media screen and (max-width: 768px){
+	.movie_card{
+    width: 95%;
+    margin: 70px auto; 
+    min-height: 350px;
+    height: auto;
+  }
+  
+  .blur_back{
+    width: 100%;
+    background-position: 50% 50% !important;  
+  }
+  
+  .movie_header{
+    width: 100%;
+    margin-top: 85px;
+  }
+  
+  .movie_desc{
+    width: 100%;
+  }
+  
+  .info_section{
+    background: linear-gradient(to top, rgb(20, 20, 19) 50%, transparent 100%);
+    display: inline-grid;
+  }
+}
+
+
+
+#bright{
+  box-shadow: 0px 0px 150px -45px rgba(255, 51, 0, 0.5);
+}
+#bright:hover{
+    box-shadow: 0px 0px 120px -55px rgba(255, 51, 0, 0.5);
+  }
+
+.bright_back{
+  background: url("https://image.tmdb.org/t/p/w500{{ moviedetail.poster_path }}");
+}
+
+	</style> 
+{% endblock style %}
+
+<!-- CONTENT BLOCK -->
+
+{% block content %}
+
+<div class="movie_card" id="bright">
+	<div class="info_section">
+		<div class="movie_header">
+	    	<img class="locandina" src="https://image.tmdb.org/t/p/w500{{ moviedetail.poster_path }}">
+	     	<h1>{{ moviedetail.title }}</h1>
+			<p> {{ moviedetail.tagline }} </p>
+	     	<h4>{{ moviedetail.release_date }},</h4>
+	     	<div>
+	     		<span class="minutes">{{ moviedetail.runtime }} min, {{ moviedetail.vote_average }}/10.0</span>
+	     	</div>
+	     	
+	    </div>
+		<div class="movie_desc">
+			<p class="text">{{ moviedetail.overview }}</p>
+		</div>
+    
+			
+		<div class="movie_social">
+			<ul>
+				<li><a href="#myModal{{ moviedetail.id }}" class="btn btn-primary btn-lg" data-toggle="modal"><i class="material-icons">play_circle_outline</i></a></li>
+	        	<li><a href="#"><i class="material-icons">rate_review</i></a></li>
+				<li><a href="#"><i class="material-icons">chat_bubble</i></a></li>
+	      </ul>
+	    </div>
+	  
+	</div>
+	<div class="blur_back bright_back"></div>
+</div>
+
+<div id="myModal{{ moviedetail.id }}" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">{{ moviedetail.videos.results.0.name }}</h5>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+						<div class="embed-responsive embed-responsive-16by9">
+							<iframe id="cartoonVideo" class="embed-responsive-item" width="560" height="315" src="//www.youtube.com/embed/{{ moviedetail.videos.results.0.key }}" allowfullscreen></iframe>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+<style>
+			
+		body {background-color: black;}
+
+		h1 { color:red }
+		h3 { color:white }
+
+		div.scrollmenu {
+		  display: flex;
+		  overflow-x: auto;
+		  background-color: #000000;
+		  white-space: nowrap;
+		  object-fit: contain;
+		}
+
+		.movieLinks {
+		  border-style: round;
+		  border-radius: 10px;
+		  border: 2px solid #000000;
+		  color: white;
+		  text-align: center;
+		  margin-right: 10px;
+		}
+
+		.movieCard
+		{
+			border-style: round;
+		  	border-radius: 10px;
+		  	border: 2px solid red;
+			width:200px; 
+			height:320px;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: red;
+		}
+
+		.scrollmenu::-webkit-scrollbar 
+		{
+			display: none;
+		}
+</style>
+
+	<h3>Watch simillar movies</h3>
+	<div class="scrollmenu">
+		{% for movie in similarmovies.results %}
+	        
+			<a class="movieLinks" href="{% url 'movie' id=movie.id %}">
+				<img class="movieCard" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.name }}">
+				<h5>{{ movie.original_title }}</h5>
+			</a>
+	    {% endfor %}
+	</div>
+
+
+{% endblock content %}
+
+<!--
+
+	<style>
+
+		.field{
+			color:red;
+		}
+		.val{
+			color:red;	
+		}
+
+		.collapsible {
+		  background-color: #eee;
+		  color: #444;
+		  cursor: pointer;
+		  padding: 18px;
+		  width: 100%;
+		  border: none;
+		  text-align: left;
+		  outline: none;
+		  font-size: 15px;
+		}
+
+		.active, .collapsible:hover {
+		  background-color: #ccc;
+		}
+
+		.exp-item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-style: round;
+			border-radius: 10px;
+			border: 2px solid #000000;
+			padding: 2px;
+			width: 180px;
+			height: 320px;
+		}
+
+		.content {
+			padding: 3px;
+			display: none;
+			overflow: hidden;
+
+			border-style: round;
+			border-radius: 10px;
+			border: 2px solid #000000;
+			padding: 10px;
+			width: 180px;
+			height: 320px;
+
+     		background-color: #000000;
+		}
+
+		.mainrow {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-items: stretch;
+					justify-content: flex-start;
+		}
+		
+		.item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-style: round;
+			border-radius: 5px;
+			border: 2px solid red;
+			padding: 0px;
+			width: 180px;
+			height: 320px;
+		}
+
+	</style>
+
+	<div class="mainrow">
+
+<div class="movieTable">
+		<p>Name: {{ name }}</p>
+		<p>Director: {{ director }}</p>
+		<p>IMDB Rating: {{ imdb }}</p>
+		<p>Release Date: {{ rel_date }}</p>
+		<p>Cast: {{ cast }}</p>
+		<a href="{{ Trailer }}">Trailer</a>	
+	</div>
+    
+
+	<br><br><br><br>
+		{% for movie in movieInfo %}
+	        
+			<img src="https://picsum.photos/180/320?random={{ movie.random }}" alt="SomeMovieTitle" type="button"  class="collapsible item">
+			
+			<div class="content">
+							<p class="field">Name: <h3>{{ movie.name }}</h3></p>
+							<p class="field">Director: <h6 class="val">{{ movie.Director }}</h6></p>
+							<p class="field">Rating: <h6 class="val">{{ movie.rating }}</h6></p>
+							<p class="field">Release Date: <h6 class="val">{{ movie.rel_date }}</h6></p>
+							<p class="field">Director: <h6 class="val">{{ movie.Director }}</h6></p>
+							<p class="field">Run Time: <h6 class="val">{{ movie.length }}</h6></p>
+			</div>
+	    
+	    {% endfor %}
+
+	</div>
+
+
+
+	<script>
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+		  coll[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var content = this.nextElementSibling;
+		    if (content.style.display === "block") {
+		      content.style.display = "none";
+		    } else {
+		      content.style.display = "block";
+		    }
+		  });
+		}
+	</script>
+-->

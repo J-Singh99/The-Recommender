@@ -1,0 +1,11 @@
+
+theRecommender/db.sqlite3
+*.sqlite3
+db.sqlite3
+*.sqlite3
+theRecommender/db.sqlite3
+theRecommender/db.sqlite3
+theRecommender/db.sqlite3
+*.sav
+*.sqlite3
+*.png

@@ -37,7 +37,8 @@ def chat_personal(request, pk):
     group = 'chat_personal_%s' % uniquekey
     chat_messages = Message.objects.all().filter(group=group).order_by('timestamp')
     userlist, grouplist = userorgrouplist(request.user)
-    return render(request, 'chat_personal.html' , {'page':'chat', 'pk': pk,'chat_messages': chat_messages, 'userlist':userlist, 'grouplist':grouplist} )
+    send_to = User.objects.get(pk=int(pk))
+    return render(request, 'chat_personal.html' , {'page':'chat', 'send_to':send_to, 'pk': pk,'chat_messages': chat_messages, 'userlist':userlist, 'grouplist':grouplist} )
 
 @login_required
 def chat_grp(request, pk):

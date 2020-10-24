@@ -1,14 +1,65 @@
 from django.shortcuts import render,redirect
-from .models import User
+from .models import User, Tasks
 from django.contrib.auth.models import auth
-from .models import Tasks
-from .forms import CreateTask
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.http import JsonResponse
 import json
+from django.contrib import messages
+from .forms import LoginForm, CustomUserCreationForm, CreateTask
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth import authenticate, login, logout
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.http import HttpResponse
 # Create your views here.
+
+
+def CustomSignUpView(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST, request.FILES)
+        if form.is_valid():  
+            image = request.FILES['image']
+            user = form.save(image)
+            login(request, user)
+            messages.success(request, "You are logged in successfully!!! ")
+            return redirect('/')
+        else:
+            return render(request, 'account.html', {'page':'index', 'include': 'signup.html', 'form': form})
+    else:
+        form = CustomUserCreationForm()
+        print(form)
+        return render(request, 'account.html', {'page':'index', 'include': 'signup.html', 'form': form})
+
+def CustomLoginView(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = form.login(request)
+            if user:
+                login(request, user)
+                messages.success(request, "You are logged in successfully!!! ")
+                return redirect('/')
+            else:
+                return render(request, 'account.html', {'page':'index', 'include': 'signin.html', 'form': form})
+        else:
+            return render(request, 'account.html', {'page':'index', 'include': 'signin.html', 'form': form})
+    form = LoginForm()
+    return render(request, 'account.html', {'page':'index', 'include': 'signin.html', 'form':form })
+
+
+def signout(request):
+    logout(request)
+    messages.info(request, "You are logged out successfully!!! ")
+    return redirect('/')
+
 
 global number_of_item
 number_of_item=2

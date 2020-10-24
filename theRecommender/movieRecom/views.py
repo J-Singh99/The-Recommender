@@ -1,39 +1,55 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import (
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView
-)
 from django.contrib import messages
+import urllib.request, json 
+from .models import links, Ratings
+from .modelfunctions import allmovies, anger, confusing, thrilling, getmovies
 
+def movies(request):
+    user_ratings = Ratings.objects.filter(user=request.user).values('movieid')
+    user_items   = [ i['movieid'] for i in user_ratings]
+    all_movies   = allmovies(user_items, request.user.id)
+    pastwatch    = Ratings.objects.filter(user=request.user).order_by('-timestamp').values('movieid')
+    pastwatch   = [ i['movieid'] for i in pastwatch]
+    pastwatch   = getmovies(pastwatch)[:10]
+    #angermovies  = anger(user_items, request.user.id)
+    #confusingmovies = confusing(user_items, request.user.id)
+    return render(request, 'movieHome.html', {'page':'movies', 'allmovies': all_movies, 'pastwatched': pastwatch, 'angermovieInfo':'angermovies', 'confusingmovieInfo':'confusingmovies'})
 
-def test(request):
-	return render(request, 'movieBASE.html')
+def getsimilarmovies(id):
+    similar = "https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=bc262bfb921192a51c8cf66453a8db3c&language=en-US&page=1"
+    similarlink = similar.format(movie_id = int(id))
+    
+    with urllib.request.urlopen(similarlink) as url:
+        data = json.loads(url.read().decode())
+        print(json.dumps(data, indent=1))
+        return data 
 
+def movie(request, id):
+    try:
+        linkobj = links.objects.get(tmdbid=int(id))
+        Ratings.objects.get_or_create(movieid=linkobj.movieid, user=request.user)
+    except links.DoesNotExist:
+        pass
+    apilink = "http://api.themoviedb.org/3/movie/{tmdbmovieid}?api_key=bc262bfb921192a51c8cf66453a8db3c&append_to_response=videos"
+    link = apilink.format(tmdbmovieid = int(id))
+    moviedetail = dict()
 
-'''
-def register_event(request,id):
-    if (request.user.is_authenticated):
-        obj=RegisteredEvents()
-        #evt=events.objects.get(id=id)
-        obj.event=events.objects.get(pk=id)
-        obj.user=request.user
-        obj.save()
-        messages.success(request, "Registered for event Successfully!!")
-    return redirect('events')
-
-def read_more(request,id):
-    if (request.user.is_authenticated):
-        evt = events.objects.get(pk=id)
-    return render(request, 'readmore.html',{'evt':evt})
-
-def event_feed(request):
-    if (request.user.is_authenticated):
-        #for now lets just render all events
-        evt = events.objects.all()
-        return render(request, 'event.html', {'page':'events','evt':evt})
-'''
+    with urllib.request.urlopen(link) as url:
+        data = json.loads(url.read().decode())
+        moviedetail = data
+        print(type(data))
+    similarmovies = getsimilarmovies(id)
+    return render(request, 'movieINFO.html', {'page':'movies','moviedetail': moviedetail, 'similarmovies': similarmovies})
+    
+def searchmovie(request):
+    apilink = 'https://api.themoviedb.org/3/search/movie?api_key=bc262bfb921192a51c8cf66453a8db3c&language=en-US&query={query}&page={page}&include_adult=false'
+    query = request.GET.get('query')
+    query = query.replace(" ", "%20")
+    page = request.GET.get('page')
+    link = apilink.format(query = query, page = page)
+    with urllib.request.urlopen(link) as url:
+        data = json.loads(url.read().decode())
+        print(type(data))
+        return render(request, 'movieSEARCH.html', {'page':'movies', 'movies': data})

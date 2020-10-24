@@ -89,9 +89,8 @@
             <div class="embed-responsive embed-responsive-4by3">
               <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bR8sE9ubyTI"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <h3><a href="#">SONG NAME</a></h3>
-            <p>By ARTIST NAME</p>
-            <p><a href="#" class="more">RELEASE DATE</a></p>
+            <h3><a href="#">{{song_info.0}}</a></h3>
+            <p>By {{song_info.1}}</p>
           </div>
         </div>
              
@@ -101,15 +100,22 @@
     </div>
   </div>
   <div class="container">
-        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-          <div class="image" style="background-image: url({% static 'images/img_1.jpg' %});"></div>
+  {% for i in final_song_list2 %}
+      <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+        <div class="image" style="background-image: url({% static 'images/img_1.jpg' %});"></div>
           <div class="text">
-            <h3 class="font-weight-light"><a href="#">List of related songs </a></h3>
-            <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>ARTIST NAME</small></span></div>
-            <div class="player">
-            </div>
+            <h3 class="font-weight-light">
+              <form action="{% url 'song2' %}" method="get">
+                <input style="display:none" type="text" value="{{i.0}}" name="song_title">
+                <input style="display:none" type="text" value="{{i.1}}" name="artist">
+                <button type="submit">{{i.0}}</button>
+              </form>
+            <!--<a href="#">{{i.0}}</a>-->
+            </h3>
+            <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>{{i.1}}</small></span></div>
           </div>
-        </div>
+      </div>
+    {% endfor %}
       </div>
   
   

@@ -82,7 +82,7 @@ class item_similarity_recommender_py():
         
     #Construct cooccurence matrix
     def construct_cooccurence_matrix(self, user_songs, all_songs):
-            
+        print(user_songs)
         ####################################
         #Get users for all songs in user_songs.
         ####################################
@@ -121,13 +121,13 @@ class item_similarity_recommender_py():
                     cooccurence_matrix[j,i] = float(len(users_intersection))/float(len(users_union))
                 else:
                     cooccurence_matrix[j,i] = 0
-                    
-        
+             
+        print(cooccurence_matrix)
         return cooccurence_matrix
 
     
     #Use the cooccurence matrix to make top recommendations
-    def generate_top_recommendations(self,cooccurence_matrix, all_songs, user_songs):
+    def generate_top_recommendations(self,user, cooccurence_matrix, all_songs, user_songs):
         print("Non zero values in cooccurence_matrix :%d" % np.count_nonzero(cooccurence_matrix))
         
         #Calculate a weighted average of the scores in cooccurence matrix for all user songs.
@@ -139,7 +139,7 @@ class item_similarity_recommender_py():
         sort_index = sorted(((e,i) for i,e in enumerate(list(user_sim_scores))), reverse=True)
     
         #Create a dataframe from the following
-        columns = ['song', 'score', 'rank']
+        columns = ['user_id','song', 'score', 'rank']
         #index = np.arange(1) # array of numbers for the number of samples
         df = pandas.DataFrame(columns=columns)
          
@@ -147,7 +147,7 @@ class item_similarity_recommender_py():
         rank = 1 
         for i in range(0,len(sort_index)):
             if ~np.isnan(sort_index[i][0]) and all_songs[sort_index[i][1]] not in user_songs and rank <= 10:
-                df.loc[len(df)]=[all_songs[sort_index[i][1]],sort_index[i][0],rank]
+                df.loc[len(df)]=[user, all_songs[sort_index[i][1]],sort_index[i][0],rank]
                 rank = rank+1
         
         #Handle the case where there are no recommendations
@@ -190,7 +190,8 @@ class item_similarity_recommender_py():
         #######################################################
         #D. Use the cooccurence matrix to make recommendations
         #######################################################
-        df_recommendations = self.generate_top_recommendations(cooccurence_matrix, all_songs, user_songs)
+        user=""
+        df_recommendations = self.generate_top_recommendations(user, cooccurence_matrix, all_songs, user_songs)
                 
         return df_recommendations
     
@@ -216,6 +217,6 @@ class item_similarity_recommender_py():
         #D. Use the cooccurence matrix to make recommendations
         #######################################################
         user = ""
-        df_recommendations = self.generate_top_recommendations(user, cooccurence_matrix, all_songs, user_songs)
+        df_recommendations = self.generate_top_recommendations(user,cooccurence_matrix, all_songs, user_songs)
          
         return df_recommendations
