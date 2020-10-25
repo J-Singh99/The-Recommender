@@ -4,6 +4,7 @@ import joblib
   
 class All:
     file = os.path.join(settings.BASE_DIR, 'movieRecom\mlModels\\all.sav')
+    #algo = dict()
     algo = joblib.load(file)
     contains = ""
 class Anger:

@@ -50,8 +50,8 @@
             <li {% ifequal page "events" %} class = "active" {% endifequal %}>
               <a href="{% url 'events' %}">Events</a>
             </li>
-            <li>
-              <a href="#">To Do List</a>
+            <li {% ifequal page "todolist" %} class = "active" {% endifequal %}>
+              <a href="{% url 'todo' %}">To Do List</a>
             </li>
             <!--<li>
               <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">More</a>

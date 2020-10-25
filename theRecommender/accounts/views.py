@@ -76,6 +76,28 @@ def get_comp_pages(user_pk):
     page_range_2 = paginatorr.num_pages
     return page_range_2
 
+def todo(request):
+    form = CreateTask()
+    comp_tasks = Tasks.objects.all().filter(user=request.user.pk,completed=True)
+    my_model   = Tasks.objects.all().filter(user=request.user.pk,completed=False).order_by('deadline')
+    paginatorr   = Paginator(my_model, number_of_item)
+    paginatorr_2 = Paginator(comp_tasks, number_of_item)
+    first_page   = paginatorr.page(1).object_list
+    first_page_2 = paginatorr_2.page(1).object_list
+    page_range   = paginatorr.page_range
+    page_range_2 = paginatorr_2.page_range
+    result       = paginatorr.page(1)
+    result_2     = paginatorr_2.page(1)
+    
+    if request.method == 'POST':
+        page_n    = request.POST.get('page_n', 1)
+        page_n_2  = request.POST.get('page_n_2', 1)
+        results   = list(paginatorr.page(page_n).object_list.values('id', 'task', 'deadline'))
+        results_2 = list(paginatorr_2.page(page_n_2).object_list.values('id', 'task'))
+        return JsonResponse({"results":results,"results_2":results_2})
+    return render(request, 'todowithindex.html', {'page': 'todolist', 'first_page_2': first_page_2, 'form': form,'results':result,'results_2':result_2,'first_page':first_page,'page_range':page_range,'page_range_2':page_range_2})
+
+
 def index(request):
     form = CreateTask()
     comp_tasks = Tasks.objects.all().filter(user=request.user.pk,completed=True)
@@ -95,7 +117,7 @@ def index(request):
         results   = list(paginatorr.page(page_n).object_list.values('id', 'task', 'deadline'))
         results_2 = list(paginatorr_2.page(page_n_2).object_list.values('id', 'task'))
         return JsonResponse({"results":results,"results_2":results_2})
-    return render(request, 'index.html', {'page': 'index', 'first_page_2': first_page_2, 'form': form,'results':result,'results_2':result_2,'first_page':first_page,'page_range':page_range,'page_range_2':page_range_2})
+    return render(request, 'todowithindex.html', {'page': 'index', 'include': 'index.html', 'first_page_2': first_page_2, 'form': form,'results':result,'results_2':result_2,'first_page':first_page,'page_range':page_range,'page_range_2':page_range_2})
 
 @login_required
 def addTask(request):
