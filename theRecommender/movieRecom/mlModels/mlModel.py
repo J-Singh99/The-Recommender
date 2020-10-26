@@ -4,13 +4,13 @@ import joblib
   
 class All:
     file = os.path.join(settings.BASE_DIR, 'movieRecom/mlModels/all.sav')
-    #algo = dict()
+    algo = dict()
     algo = joblib.load(file)
     contains = ""
 class Anger:
     file = os.path.join(settings.BASE_DIR, 'movieRecom/mlModels/Anger.sav')
     algo = dict()
-    #algo = joblib.load(file)
+    algo = joblib.load(file)
     contains = "Family Musical Comedy"
 class Anticipation:
     file = os.path.join(settings.BASE_DIR, 'movieRecom/mlModels/Anticipation.sav')
@@ -59,6 +59,3 @@ class Thrilling:
     algo = dict()
     #algo = joblib.load(file)
     contains = "Horror Mystery"
-
-
-
