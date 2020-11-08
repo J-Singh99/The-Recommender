@@ -54,6 +54,12 @@ Please run the following commands to run the project:
 - Start Redis services  
 - `python manage.py runserver`
 
-  
+
+## Use Case Diagram  
+![Use Case Diagram](https://github.com/J-Singh99/The-Recommender/blob/master/UML%20diagrams/Use%20case%20diagram.pdf)
+
+## Class Diagram  
+![Class Diagram](https://github.com/J-Singh99/The-Recommender/blob/master/UML%20diagrams/class_diagram_SE.pdf)
+
 #### The link to the project write up PDF can be found [here](https://docs.google.com/document/d/1e4s_ns_DGjKBgFjUaxnllk0Nj08A2Vivo7f9j8acFW4/edit?usp=sharing).  
 #### The link to the UML Diagrams can be found [here](https://drive.google.com/drive/folders/1B_514GvPcEAeFQ03XSfG496SJAam8VPp?usp=sharing).
