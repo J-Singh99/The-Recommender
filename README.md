@@ -13,13 +13,15 @@ An app made for students, by students
   
   
 ### Aim
-A web/mobile app to help in organizing events, managing assignments, and notify students for the same. Also, entertain students according to his/her mood using a chatbot, music, videos, news, and suggest activities near him/her like yoga classes.  
-  
+The primary motive of this project is to provide a common platform for productivity and entertainment.
+
+Often, the leap from work to play is large, and switching modes, whether mental or physical, is difficult. Hence, our idea was to bring both the sides of the coin to a common plane.
+
+The main idea behind this application, targetted specifically for college students, is that you manage your usual college work flow, including assignments, tests, events, etc. along with intuitive entertainment like personalised movie and song recomendations, mood sensing chatbots, etc.   
   
   
 ### Overview
-This is an app to integrate entertainment with maintaining a schedule, organize events, and get notifications for all.  This app will have feature of chatbot which chat with use user like Alexa to analyze the mood of the user and recommend what he should do like read the news, join yoga class, watch videos and in parallel to that user can also do other things as he can manage his/her assignments, notes, schedule, see events and can organize an event.
-
+This is an app to integrate entertainment with college activities like maintaining a schedule, organize events, and get notifications for all.  This app will feature a chatbot, which analyzes the mood of the user, and recommends activities like exercise, watch a movie, study, etc. All this is done parallely, so the user can seamlesly submit an assignment, watch a personally recommended movie in the same application, manage college events, chat with a chatbot, etc all in the same application.
   
   
   
