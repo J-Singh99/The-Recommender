@@ -3,23 +3,16 @@
   
   
   
-# The Recommender  
-## An app made for Students, by Students  
+# The Recommender
+## An app made for students, by students
   
 ### Mentor: Prof. Rajesh Bhatia
-  
 #### Group ID : 4  
-Jaspreet Singh
-18103107
-  
-Parizat Garg
-18103097
-  
-Atul Jawa
-18103122
-  
-Malvika Jindal
-18103040
+
+**Jaspreet Singh** 18103107  
+**Parizat Garg** 18103097  
+**Atul Jawa** 18103122  
+**Malvika Jindal**  18103040
   
 
 
