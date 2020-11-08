@@ -1,13 +1,13 @@
 ![alt text](https://github.com/J-Singh99/The-Recommender/blob/master/ReadMe%20Images/RecommendationEngine.webp)
     
-# The Recommender  
-An app made for students, by students
+# THE RECOMMENDER  
+An app made **for** students, **by** students
 
 ### Mentor: Prof. Rajesh Bhatia
 #### Group ID : 4
+**Atul Jawa** 18103122  
 **Jaspreet Singh** 18103107  
 **Parizat Garg** 18103097  
-**Atul Jawa** 18103122  
 **Malvika Jindal**  18103040
   
   
@@ -15,24 +15,23 @@ An app made for students, by students
 ### Aim
 The primary motive of this project is to provide a common platform for productivity and entertainment.
 
-Often, the leap from work to play is large, and switching modes, whether mental or physical, is difficult. Hence, our idea was to bring both the sides of the coin to a common plane.
+Often, the leap from work to play is large, and switching modes, whether mental or physical, is difficult. Hence, our idea was to bring both sides of the coin to a common plane.
 
 The main idea behind this application, targetted specifically for college students, is that you manage your usual college work flow, including assignments, tests, events, etc. along with intuitive entertainment like personalised movie and song recomendations, mood sensing interactions, etc.   
   
   
 ### Overview
 This is an application primarily to integrate entertainment with college activities.
-Activities like maintaining a schedule, organizing events, submitting assignments, etc. would be done side-by-side with an ML model that recommends movies and songs, a chatbot that senses your mood (as a scalable idea), recomendations for activities, etc. All this is done parallely, so the user can seamlesly submit an assignment, watch a personally recommended movie, manage college events, chat with a chatbot, etc. all in the same application.
+Activities like maintaining a schedule, organizing events, submitting assignments, etc. would be done side-by-side with an ML model that recommends movies and songs, a chatbot that senses your mood (as a scalable idea), recomendations for activities, etc. All this is done parallely, so the user can seamlesly submit an assignment, watch a personally recommended movie, manage college events, chat with a group, etc. all in the same application.
   
   
   
-### Goals:
+### Goals
 - Create an ML supported recommendation system for songs, videos, activities, etc.
 - Build a discussion forum to connect students to organize events
 - Build a supporting notification system to notify the user of the same
 - A system for managing assignments and schedules, such as a to-do list
 - Build a chat system with group chat functionality 
-- Feature to use different systems at once like listening to songs and reading news at once.
   
   
 ### Technologies Used:
@@ -47,14 +46,14 @@ Activities like maintaining a schedule, organizing events, submitting assignment
 ![alt text](https://github.com/J-Singh99/The-Recommender/blob/master/ReadMe%20Images/Photo2.webp)
 
 
-## How to run
+## HOW TO RUN
 Please run the following commands to run the project:
 - `pip install requirment.txt`
 - `python manage.py makemigration`
 - `python manage.py migrate`
 - `python populate_movies_link.py`
 - Train model
-  - Download and extract [this file](https://drive.google.com/file/d/1rQdmWz3u9G1V_d0R8NbPYvuhcYls7RgB/view?usp=sharing) to **movieRecom/mlModel/**
+  - Download and extract [this file](https://drive.google.com/file/d/1rQdmWz3u9G1V_d0R8NbPYvuhcYls7RgB/view?usp=sharing) to **movieRecom/mlModel/**  
   OR
   - `python movieRecom/mlModels/Svdtuning.py`
 - Start Redis services  
