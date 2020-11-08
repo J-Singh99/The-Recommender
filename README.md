@@ -17,27 +17,32 @@ The primary motive of this project is to provide a common platform for productiv
 
 Often, the leap from work to play is large, and switching modes, whether mental or physical, is difficult. Hence, our idea was to bring both the sides of the coin to a common plane.
 
-The main idea behind this application, targetted specifically for college students, is that you manage your usual college work flow, including assignments, tests, events, etc. along with intuitive entertainment like personalised movie and song recomendations, mood sensing chatbots, etc.   
+The main idea behind this application, targetted specifically for college students, is that you manage your usual college work flow, including assignments, tests, events, etc. along with intuitive entertainment like personalised movie and song recomendations, mood sensing interactions, etc.   
   
   
 ### Overview
-This is an app to integrate entertainment with college activities like maintaining a schedule, organize events, and get notifications for all.  This app will feature a chatbot, which analyzes the mood of the user, and recommends activities like exercise, watch a movie, study, etc. All this is done parallely, so the user can seamlesly submit an assignment, watch a personally recommended movie in the same application, manage college events, chat with a chatbot, etc all in the same application.
+This is an application primarily to integrate entertainment with college activities.
+Activities like maintaining a schedule, organizing events, submitting assignments, etc. would be done side-by-side with an ML model that recommends movies and songs, a chatbot that senses your mood (as a scalable idea), recomendations for activities, etc. All this is done parallely, so the user can seamlesly submit an assignment, watch a personally recommended movie, manage college events, chat with a chatbot, etc. all in the same application.
   
   
   
 ### Goals:
-- Create recommendation systems for songs, news, videos, and activities.
-- Create a chatbot to chat with the user and to analyze the mood of the user
-- Build a discussion form to connect students to organize events and a notification system to notify the user of the same.
-- A system for managing assignments and schedules. 
+- Create an ML supported recommendation system for songs, videos, activities, etc.
+- Build a discussion forum to connect students to organize events
+- Build a supporting notification system to notify the user of the same
+- A system for managing assignments and schedules, such as a to-do list
+- Build a chat system with group chat functionality 
 - Feature to use different systems at once like listening to songs and reading news at once.
   
   
 ### Technologies Used:
-- Python, for different ML models
-- Flask, as a web framework
-- React for frontend.  
-- Flutter, to create a mobile application.
+- Django
+- Python 
+- Sklearn for ML
+- Numpy & Pandas
+- Django channels
+- Html Css Bootstrap
+
 
 ![alt text](https://github.com/J-Singh99/The-Recommender/blob/master/ReadMe%20Images/Photo2.webp)
 
@@ -47,12 +52,11 @@ Please run the following commands to run the project:
 - `pip install requirment.txt`
 - `python manage.py makemigration`
 - `python manage.py migrate`
-- `python manage.py createsuperuser`
-  - Follow the on screen commands to set up the superuser
 - `python populate_movies_link.py`
-- `python user_sample.py`
-- `python populate_song_user.py`
+- Train model
   - Download and extract [this file](https://drive.google.com/file/d/1rQdmWz3u9G1V_d0R8NbPYvuhcYls7RgB/view?usp=sharing) to **movieRecom/mlModel/**
+  OR
+  - `python movieRecom/mlModels/Svdtuning.py`
 - Start Redis services  
 - `python manage.py runserver`
 
