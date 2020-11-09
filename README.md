@@ -37,6 +37,7 @@ Activities like maintaining a schedule, organizing events, submitting assignment
 ### Technologies Used:
 - Django
 - Python 
+- Javascript
 - Sklearn for ML
 - Numpy & Pandas
 - Django channels
