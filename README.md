@@ -13,11 +13,9 @@ An app made **for** students, **by** students
   
   
 ### Aim
-The primary motive of this project is to provide a common platform for productivity and entertainment.
-
-Often, the leap from work to play is large, and switching modes, whether mental or physical, is difficult. Hence, our idea was to bring both sides of the coin to a common plane.
-
-The main idea behind this application, targetted specifically for college students, is that you manage your usual college work flow, including assignments, tests, events, etc. along with intuitive entertainment like personalised movie and song recomendations, mood sensing interactions, etc.   
+- The primary motive of this project is to provide a common platform for productivity and entertainment.
+- Often, the leap from work to play is large, and switching modes, whether mental or physical, is difficult. Hence, our idea was to bring both sides of the coin to a common plane.
+- The main idea behind this application, targetted specifically for college students, is that you manage your usual college work flow, including assignments, tests, events, etc. along with intuitive entertainment like personalised movie and song recomendations, mood sensing interactions, etc.   
   
   
 ### Overview
