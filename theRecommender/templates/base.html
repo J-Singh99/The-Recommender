@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" id="bootstrap-css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
     <link rel="stylesheet" href="{% static 'css/notifications.css' %}">
@@ -92,11 +92,11 @@
             <li class="header-menu">
               <span>More</span>
             </li>
-            <li>
-              <a href="#">Contact Us</a>
+            <li {% ifequal page "contactus" %} class = "active" {% endifequal %}>
+              <a href="{% url 'contactus' %}">Contact Us</a>
             </li>
-            <li>
-              <a href="#">About Us</a>
+            <li {% ifequal page "aboutus" %} class = "active" {% endifequal %}>
+              <a href="{% url 'aboutus' %}">About Us</a>
             </li>
           </ul>
           <div class="footer">

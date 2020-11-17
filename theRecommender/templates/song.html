@@ -21,7 +21,29 @@
   <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
   <link rel="stylesheet" href="{% static 'css/style_song.css' %}">
-  
+  <style>
+  form button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: #f8b739;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  transition: .3s all ease;
+}
+div.scrollmenu {
+		  display: flex;
+		  overflow-x: auto;
+		  background-color: #000000;
+		  object-fit: contain;
+		}
+    .scrollmenu::-webkit-scrollbar 
+		{
+			display: none;
+		}
+  </style>
+
 {% endblock link %}
 {% block content %}
   
@@ -32,7 +54,7 @@
       <div class="container py-1">
         <div class="row align-items-center">
           <div class="col-8 col-md-8 col-lg-4">
-            <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0"><strong>Dj<span class="text-primary">.</span></strong></a></h1>
+            <h1 class="mb-0 text-white h1 mb-0" style="font-size:9rem; font-weight:325" ><strong>Dj<span class="text-primary">.</span></strong></h1>
           </div>
           <div class="col-4 col-md-4 col-lg-8">
             <nav class="site-navigation text-right text-md-right" role="navigation">
@@ -86,19 +108,20 @@
         </div>
       </div>
       <div class="row">
+      <div style="width:100%;%" class="scrollmenu">
       {% for i in final_song_list %}
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
           <div class="event">
-            <div class="embed-responsive embed-responsive-4by3">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bR8sE9ubyTI"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+          <div class="embed-responsive embed-responsive-16by9">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/aatr_2MstrI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
+            
             <h3>
               <form action="{% url 'song2' %}" method="get">
                 <input style="display:none" type="text" value="{{i.0}}" name="song_title">
                 <input style="display:none" type="text" value="{{i.1}}" name="artist">
                 <button type="submit">{{i.0}}</button>
               </form>
-              <!--<a href="#">{{i.0}}</a>-->
             </h3>
             <p>By {{i.1}}</p>
             <p><a href="#" class="more">Released by {{i.3}}</a></p>
@@ -108,7 +131,7 @@
       </div>
     </div>
   </div>
-  <div class="container">
+  <div class="container mt-5">
     {% for i in final_song_list2 %}
         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
           <div class="image" style="background-image: url({% static 'images/img_1.jpg' %});"></div>
@@ -119,7 +142,7 @@
                 <input style="display:none" type="text" value="{{i.1}}" name="artist">
                 <button type="submit">{{i.0}}</button>
               </form>
-            <!--<a href="#">{{i.0}}</a>-->
+            <!-- a href="#">{{i.0}}</a> -->
             </h3>
             <div class=" mb-3 text-black"><span class="text-black-opacity-05"><small>{{i.1}}</small></span></div>
             <div class="player">
@@ -144,16 +167,21 @@
       <div class="row">
         <div class="col-md-6 video-wrap mb-5">
           <img src="{% static 'images/img_4.jpg' %}" alt="Image placeholder" class="img-fluid">
-          <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo btn-video"><span class="icon-play"></span></a>
         </div>
         <div class="col-md-6 pl-md-5">
           <div class="site-section-heading">
             <h2>We Love Music</h2>            
           </div>
-          <p class="lead">Join with us today</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam facere a excepturi quod impedit rerum ipsum totam incidunt, necessitatibus id veritatis maiores quos saepe dolore commodi magnam fugiat. Incidunt, omnis.</p>
-          <p class="mb-4">Nobis quae eaque facere architecto eligendi, voluptas quasi, blanditiis aperiam possimus inventore quis nam! Cupiditate necessitatibus, voluptatem excepturi placeat exercitationem quos vitae ut vero dolorem, provident sit odio porro facere.</p>
-          <p><a href="#" class="btn btn-primary">Join Us</a></p>
+          <p class="lead">Join US RIGHT NOW</p>
+          <p>
+            <ol>
+              <li>“Music is like a dream. One that I cannot hear.” ― &nbsp;<a href="https://www.cmuse.org/beethoven-biography-ludwig-van-beethoven-composer-history/" target="_blank" rel="noopener">Ludwig van Beethoven</a></li><li>“Without music, life would be a mistake” ― Friedrich Nietzsche</li><li>“I can chase you, and I can catch you, but there is nothing I can do to make you mine.” ― Morrissey</li><li>“Music gives a soul to the universe, wings to the mind, flight to the imagination and life to everything.” ― Plato</li><li>“How is it that music can, without words, evoke our laughter, our fears, our highest aspirations?” ― Jane Swan</li><li>“If I were not a physicist, I would probably be a musician. I often think in music. I live my daydreams in music. I see my life in terms of music.” ― <a href="https://www.cmuse.org/interesting-musical-facts-about-albert-einstein/" target="_blank" rel="noopener">Albert Einstein</a></li>
+            </ol>
+          </p>
+          <div class="site-section-heading">
+            <h2>HAVE A GREAT TIME OUT !!!!!</h2>            
+          </div>
+                  
         </div>
       </div>
     </div>

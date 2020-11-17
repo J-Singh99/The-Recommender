@@ -60,7 +60,12 @@ def signout(request):
     messages.info(request, "You are logged out successfully!!! ")
     return redirect('/')
 
+def contact(request):
+    return render(request, 'contactus.html', {'page':'contactus'})
 
+def aboutus(request):
+    return render(request, 'aboutus.html', {'page':'aboutus'})
+    
 global number_of_item
 number_of_item=2
 
